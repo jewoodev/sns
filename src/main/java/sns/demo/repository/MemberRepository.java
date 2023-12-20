@@ -1,10 +1,8 @@
 package sns.demo.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import sns.demo.domain.Board;
 import sns.demo.domain.Member;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package sns.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.Member;
@@ -25,8 +24,8 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        List<Member> foundMembers = memberRepository.findByName(member.getUsername());
-        if (!foundMembers.isEmpty()) {
+        List<Member> foundMemberForms = memberRepository.findByName(member.getUsername());
+        if (!foundMemberForms.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 아이디입니다.");
         }
     }
@@ -40,6 +39,4 @@ public class MemberService {
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-
-
 }
