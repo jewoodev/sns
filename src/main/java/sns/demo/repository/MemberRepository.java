@@ -2,6 +2,7 @@ package sns.demo.repository;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import sns.demo.domain.Member;
 
@@ -10,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class MemberRepository{
+public class MemberRepository {
 
     private final EntityManager em;
 

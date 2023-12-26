@@ -1,4 +1,4 @@
-package sns.demo.controller;
+package sns.demo.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

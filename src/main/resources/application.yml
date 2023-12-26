@@ -1,13 +1,13 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-1.cmcwz83lu2vf.ap-northeast-2.rds.amazonaws.com:3306/spring
+    url: jdbc:mysql://mysql-1.cmcwz83lu2vf.ap-northeast-2.rds.amazonaws.com/spring
     username: admin
     password: qwer4321
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
     properties:
       hibernate:

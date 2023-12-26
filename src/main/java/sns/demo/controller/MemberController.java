@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sns.demo.domain.Member;
+import sns.demo.dto.MemberForm;
 import sns.demo.service.MemberService;
 
 @Controller
@@ -34,9 +35,10 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        Member member = new Member();
-        member.setUsername(form.getUsername());
-        member.setPassword(form.getPassword1());
+        String username = form.getUsername();
+        String password = form.getPassword1();
+        String email = form.getEmail();
+        Member member = new Member(null, username, password, email);
         memberService.join(member);
         return "redirect:/";
     }

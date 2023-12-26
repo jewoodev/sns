@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sns.demo.domain.Board;
+import sns.demo.dto.BoardForm;
 import sns.demo.service.BoardService;
 
 import java.util.List;
