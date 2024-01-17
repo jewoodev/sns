@@ -14,9 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @Transactional
-class MemberServiceTest {
+class MemberServiceImplTest {
 
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberServiceImpl memberServiceImpl;
     @Autowired MemberRepository memberRepository;
 
     @Test
@@ -26,7 +27,7 @@ class MemberServiceTest {
         member.setPassword("1219");
 
 
-        Long saveId = memberService.join(member);
+        Long saveId = memberServiceImpl.join(member);
 
         assertEquals(member, memberRepository.findById(saveId).get());
     }
@@ -42,8 +43,8 @@ class MemberServiceTest {
         member2.setPassword("1219");
 
         assertThrows(IllegalStateException.class, () -> {
-            memberService.join(member1);
-            memberService.join(member2);
+            memberServiceImpl.join(member1);
+            memberServiceImpl.join(member2);
         });
     }
 

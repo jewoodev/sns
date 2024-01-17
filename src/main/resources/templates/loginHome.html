@@ -110,8 +110,8 @@
                 <h1 class="fw-light">Must eat!</h1>
                 <p class="lead text-muted">맛집 세상을 만들어봐요~!</p>
                 <p>
-                    <a href="/members/new" class="btn btn-primary my-2">회원가입</a>
-                    <a href="/login" class="btn btn-primary my-2">로그인</a>
+                    <h4 class="mb-3" th:text="|로그인: ${member.username}|">로그인 사용자 이름</h4>
+                    <a href="/board/new" class="btn btn-secondary my-2">글 작성하기</a>
                 </p>
             </div>
         </div>

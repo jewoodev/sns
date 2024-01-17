@@ -1,7 +1,6 @@
 package sns.demo.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import sns.demo.domain.Board;
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class BoardRepository{
+public class BoardRepository {
     private final EntityManager em;
 
     public Long save(Board board) {
@@ -27,7 +26,4 @@ public class BoardRepository{
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
-    public void delete() {
-
-    }
 }

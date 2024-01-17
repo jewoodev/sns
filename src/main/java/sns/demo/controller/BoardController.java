@@ -23,12 +23,6 @@ import java.util.List;
 @Transactional
 public class BoardController {
     private final BoardService boardService;
-    @GetMapping("/")
-    public String home(Model model) {
-        List<Board> boardList = boardService.findBoards();
-        model.addAttribute("boardList", boardList);
-        return "home";
-    }
 
     @GetMapping("/board/new")
     public String createBoard(Model model) {
@@ -38,13 +32,15 @@ public class BoardController {
 
     @PostMapping("/board/new")
     public String createBoard(@Valid BoardForm form, BindingResult result) {
+        log.info(form.toString());
+
         if (result.hasErrors()) {
             return "board/createBoardForm";
         }
 
-        Board board = new Board();
-        board.setWriter(form.getWriter());
-        board.setContent(form.getContent());
+        String title = form.getTitle();
+        String content = form.getContent();
+        Board board = new Board(null, title, content, null, null);
         boardService.register(board);
         return "redirect:/";
     }

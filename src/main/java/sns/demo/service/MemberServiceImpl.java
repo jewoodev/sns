@@ -1,0 +1,68 @@
+package sns.demo.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import sns.demo.domain.Member;
+import sns.demo.repository.MemberRepository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MemberServiceImpl implements MemberService {
+
+    private final MemberRepository memberRepository;
+
+    //회원가입
+    @Transactional
+    public Long join(Member member) throws IllegalStateException{
+        validateDuplicateMember(member); //중복 검증
+        memberRepository.save(member);
+        return member.getMemberId();
+    }
+
+    private void validateDuplicateMember(Member member) throws IllegalStateException {
+        List<Member> foundMemberForms = memberRepository.findByUsername(member.getUsername());
+        if (!foundMemberForms.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 아이디입니다.");
+        }
+    }
+
+    //단일 회원 조회
+    public Member findOne(Long memberId) {
+        return memberRepository.findById(memberId).get();
+    }
+
+    //전체 회원 조회
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    /**
+     * @return null이면 로그인 실패
+     */
+    //로그인
+    public Member login(String username, String password) {
+        return memberRepository.findByUsername(username)
+                .stream().filter(m -> m.getPassword().equals(password))
+                .findAny().get();
+    }
+
+//    @Override
+//    public Map<String, String> validateHandling(Errors errors) {
+//        Map<String, String> validateResult = new HashMap<>();
+//
+//        for (FieldError error : errors.getFieldErrors()) {
+//            String validKeyName = String.format("valid_%s", error.getField());
+//            validateResult.put(validKeyName, error.getDefaultMessage());
+//        }
+//
+//        return validateResult;
+//    }
+}
