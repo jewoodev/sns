@@ -1,5 +1,7 @@
 package sns.demo.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,9 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
 
+    @PersistenceContext
+    private EntityManager em;
+
     //회원가입
     @Transactional
     public Long join(Member member) throws IllegalStateException{
@@ -28,8 +33,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     private void validateDuplicateMember(Member member) throws IllegalStateException {
-        List<Member> foundMemberForms = memberRepository.findByUsername(member.getUsername());
-        if (!foundMemberForms.isEmpty()) {
+        Member duplicatedMember = em.createQuery("select m from Member m where m.username = :username", Member.class)
+                .setParameter("username", member.getUsername())
+                .getSingleResult();
+        if (duplicatedMember != null) {
             throw new IllegalStateException("이미 존재하는 아이디입니다.");
         }
     }
@@ -54,15 +61,5 @@ public class MemberServiceImpl implements MemberService {
                 .findAny().get();
     }
 
-//    @Override
-//    public Map<String, String> validateHandling(Errors errors) {
-//        Map<String, String> validateResult = new HashMap<>();
-//
-//        for (FieldError error : errors.getFieldErrors()) {
-//            String validKeyName = String.format("valid_%s", error.getField());
-//            validateResult.put(validKeyName, error.getDefaultMessage());
-//        }
-//
-//        return validateResult;
-//    }
+//    public void updateById(id, )
 }

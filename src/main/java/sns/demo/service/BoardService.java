@@ -13,9 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final S3UploadService s3UploadService;
 
-    public void register(Board board) {
-        boardRepository.save(board);
+    public Long register(Board board) {
+        return boardRepository.save(board);
     }
 
 
@@ -32,4 +33,7 @@ public class BoardService {
     public void deleteOne(int boardId) {
 
     }
+
+//    @Transactional
+//    public void uploadBoardImage(String)
 }

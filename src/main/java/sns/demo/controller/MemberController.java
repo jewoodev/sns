@@ -1,7 +1,5 @@
 package sns.demo.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,8 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sns.demo.domain.Member;
-import sns.demo.dto.LoginForm;
 import sns.demo.dto.MemberForm;
+import sns.demo.dto.UpdateMemberForm;
 import sns.demo.service.MemberServiceImpl;
 
 @Slf4j
@@ -48,10 +46,43 @@ public class MemberController {
         String username = form.getUsername();
         String password = form.getPassword1();
         String email = form.getEmail();
-        Member member = new Member(null, username, password, email);
-        Long joinedId = memberServiceImpl.join(member);
-        ra.addAttribute("memberId", joinedId);
-        ra.addAttribute("status", true);
-        return "redirect:/members/{memberId}";
+        Member member = new Member(null, username, password, email, null);
+
+
+        //유저 네임 중복의 경우 처리
+        try {
+            Long joinedId = memberServiceImpl.join(member);
+            ra.addAttribute("memberId", joinedId);
+            ra.addAttribute("status", true);
+        } catch (IllegalStateException e) {
+            result.rejectValue("username", "duplicatedUsername", e.getMessage());
+            return "members/createMemberForm";
+        }
+
+        return "redirect:/";
     }
+
+    @GetMapping("/update")
+    public String updateMember(Model model) {
+        model.addAttribute("updateMemberForm", new UpdateMemberForm());
+        return "members/updateMemberForm";
+    }
+
+//    @PostMapping("/update")
+//    public String updateMember(@Validated @ModelAttribute UpdateMemberForm form,
+//                               BindingResult result, RedirectAttributes ra) {
+//        if (result.hasErrors()) {
+//            log.info("errors={}", result);
+//            return "members/updateMemberForm";
+//        }
+//
+//        //기존 비밀번호 확인 과정
+//        if (form.getCurrentPassword().equals())
+//
+//        //비밀번호 확인 과정
+//        if (!form.getNewPassword().equals(form.getCheckPassword())) {
+//            result.rejectValue("password2", "passwordIncorrect", "2개의 패스워드가 일치하지 않습니다.");
+//            return "members/updateMemberForm";
+//        }
+//    }
 }

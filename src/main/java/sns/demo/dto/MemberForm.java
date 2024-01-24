@@ -9,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class MemberForm {
     @NotBlank(message = "아이디를 입력해주세요.")
     @Size(min = 2, max = 20, message = "아이디는 2 ~ 20자 사이로 입력해주세요.")

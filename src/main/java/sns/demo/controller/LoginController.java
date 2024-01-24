@@ -1,6 +1,8 @@
 package sns.demo.controller;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import sns.demo.argumentresolver.Login;
 import sns.demo.domain.Member;
 import sns.demo.dto.LoginForm;
 import sns.demo.service.MemberServiceImpl;
@@ -53,14 +56,24 @@ public class LoginController {
     }
 
     @GetMapping("/")
-    public String login(
-            @SessionAttribute(name = SessionConst.LOGIN_MEMBER,
-                    required = false) Member loginMember, Model model) {
+    public String login(@Login Member loginMember, Model model) {
         if (loginMember == null) {
             return "home";
         }
 
         model.addAttribute("member", loginMember);
         return "loginHome";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        expireCookie(response, "memberId");
+        return "redirect:/";
+    }
+
+    private void expireCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }

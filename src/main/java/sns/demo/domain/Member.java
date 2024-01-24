@@ -3,6 +3,9 @@ package sns.demo.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @AllArgsConstructor
@@ -16,4 +19,12 @@ public class Member {
 
     @Column(unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<Board> boardList = new ArrayList<>();
+
+    public void updatePasswordAndEmail(String password, String email) {
+        this.password = password;
+        this.email = email;
+    }
 }

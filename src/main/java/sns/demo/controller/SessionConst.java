@@ -1,5 +1,5 @@
 package sns.demo.controller;
 
-abstract class SessionConst {
-    static final String LOGIN_MEMBER = "loginMember";
+public abstract class SessionConst {
+    public static final String LOGIN_MEMBER = "loginMember";
 }
