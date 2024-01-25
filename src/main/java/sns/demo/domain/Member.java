@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
@@ -20,11 +21,10 @@ public class Member {
     @Column(unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
-    private List<Board> boardList = new ArrayList<>();
+//    @OneToMany(mappedBy = "m", cascade = CascadeType.ALL)
+//    private List<Board> boardList = new ArrayList<>();
 
-    public void updatePasswordAndEmail(String password, String email) {
+    public void updatePassword(String password) {
         this.password = password;
-        this.email = email;
     }
 }

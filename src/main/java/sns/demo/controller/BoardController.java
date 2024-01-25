@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sns.demo.argumentresolver.Login;
 import sns.demo.domain.Board;
 import sns.demo.domain.Member;
 import sns.demo.dto.BoardForm;
@@ -36,18 +38,20 @@ public class BoardController {
     }
 
     @PostMapping("/board/new")
-    public String createBoard(@Valid BoardForm form, BindingResult result, HttpServletRequest request) {
-        log.info(form.toString());
-
+    public String createBoard(@Valid BoardForm form, @Login Member loginMember, BindingResult result, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "board/createBoardForm";
         }
 
-        String title = form.getTitle();
-        String content = form.getContent();
-        Member member = (Member) sessionManager.getSession(request);
-        Board board = new Board(null, title, content, member,null, null);
-        Long Id = boardService.register(board);
-        return "redirect:/board/{Id}";
+        Board board = Board.builder()
+                .title(form.getTitle())
+                .content(form.getContent())
+                .member(loginMember)
+                .build();
+
+
+        Long id = boardService.register(board);
+        redirectAttributes.addAttribute("id", id);
+        return "redirect:/board/{id}";
     }
 }

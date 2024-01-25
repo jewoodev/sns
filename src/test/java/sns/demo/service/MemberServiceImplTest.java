@@ -22,8 +22,8 @@ class MemberServiceImplTest {
 
     @Test
     void join() {
-        Member member = new Member(null, "신제우", "1234", "asd@naver.com", null);
-        member.updatePasswordAndEmail("4567", "qwe@naver.com");
+        Member member = new Member(null, "신제우", "1234", "asd@naver.com");
+        member.updatePassword("4567");
 
         Long saveId = memberServiceImpl.join(member);
 

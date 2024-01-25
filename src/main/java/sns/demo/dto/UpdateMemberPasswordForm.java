@@ -1,15 +1,10 @@
 package sns.demo.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UpdateMemberForm {
+@Data
+public class UpdateMemberPasswordForm {
     @NotBlank(message = "현재 비밀번호를 입력해주세요.")
     private String currentPassword;
 

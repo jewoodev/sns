@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import sns.demo.domain.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
     /**
@@ -13,5 +14,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      */
     boolean existsByEmail(String email);
 
-    List<Member> findByUsername(String username);
+    Optional<Member> findByUsername(String username);
 }

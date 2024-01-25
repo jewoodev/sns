@@ -1,6 +1,7 @@
 package sns.demo.service;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,12 +33,16 @@ public class MemberServiceImpl implements MemberService {
         return member.getMemberId();
     }
 
-    private void validateDuplicateMember(Member member) throws IllegalStateException {
-        Member duplicatedMember = em.createQuery("select m from Member m where m.username = :username", Member.class)
-                .setParameter("username", member.getUsername())
-                .getSingleResult();
-        if (duplicatedMember != null) {
-            throw new IllegalStateException("이미 존재하는 아이디입니다.");
+    private void validateDuplicateMember(Member member) throws IllegalStateException, NoResultException {
+        try {
+            Member duplicatedMember = em.createQuery("select m from Member m where m.username = :username", Member.class)
+                    .setParameter("username", member.getUsername())
+                    .getSingleResult();
+            if (duplicatedMember != null) {
+                throw new IllegalStateException("이미 존재하는 아이디입니다.");
+            }
+        } catch (NoResultException e) {
+            return;
         }
     }
 
@@ -57,9 +62,15 @@ public class MemberServiceImpl implements MemberService {
     //로그인
     public Member login(String username, String password) {
         return memberRepository.findByUsername(username)
-                .stream().filter(m -> m.getPassword().equals(password))
-                .findAny().get();
+                .filter(m -> m.getPassword().equals(password))
+                .orElse(null);
     }
 
-//    public void updateById(id, )
+    @Transactional
+    public Long updateMemberPassword(Member member, String newPassword) {
+        member.updatePassword(newPassword);
+        memberRepository.saveAndFlush(member);
+
+        return member.getMemberId();
+    }
 }

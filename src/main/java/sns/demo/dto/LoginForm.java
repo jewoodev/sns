@@ -1,14 +1,9 @@
 package sns.demo.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class LoginForm {
     @NotBlank(message = "아이디를 입력해주세요.")
     private String username;
