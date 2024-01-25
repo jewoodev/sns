@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
-    private final S3UploadService s3UploadService;
 
     public Long register(Board board) {
         return boardRepository.save(board);
@@ -21,7 +20,7 @@ public class BoardService {
 
 
     public Board findOne(Long boardId) {
-        return boardRepository.findById(boardId).get();
+        return boardRepository.findById(boardId).orElse(null);
     }
 
 

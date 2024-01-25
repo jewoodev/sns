@@ -1,14 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: header}" />
-<style>
-    .container {
-        margin: 10px;
-    }
-</style>
-<body>
-    <div class="container" th:object="${board}">
 
+<body>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h3 th:text="${board.getTitle()}">게시물 조회</h3>
+        </div>
+
+        <hr class="my-4">
+
+        <div>
+            <span th:text="${board.getContent()}">게시물 내용</span>
+        </div>
+        <div th:each="image: ${board.getBoardImages()}">
+            <img th:src="|images/${image.getStoreFileName()}|" width="100%" height="auto"/>
+        </div>
     </div>
 </body>
 </html>

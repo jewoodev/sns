@@ -26,7 +26,7 @@ public class Board {
     @Column(length = 500, nullable = false)
     private String content;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -34,8 +34,7 @@ public class Board {
     private LocalDateTime regDate;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @OrderBy("boardImageId asc")
-    private List<BoardImage> boardImages;
+    private List<UploadFile> boardImages;
 
     public void update(String title, String content) {
         this.title = title;

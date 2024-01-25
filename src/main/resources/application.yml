@@ -39,3 +39,5 @@ cloud:
     stack:
       auto: false
 
+file:
+  dir: C:\develop_dir\demo\src\main\resources\images\

@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import sns.demo.argumentresolver.Login;
+import sns.demo.domain.Board;
 import sns.demo.domain.Member;
 import sns.demo.dto.LoginForm;
+import sns.demo.service.BoardService;
 import sns.demo.service.MemberServiceImpl;
+
+import java.util.List;
 
 
 @Slf4j
@@ -25,6 +29,7 @@ import sns.demo.service.MemberServiceImpl;
 @RequiredArgsConstructor
 public class LoginController {
     private final MemberServiceImpl memberServiceImpl;
+    private final BoardService boardService;
 
 
     @GetMapping("/login")
@@ -61,6 +66,9 @@ public class LoginController {
             return "home";
         }
 
+        List<Board> boardList = boardService.findBoards();
+
+        model.addAttribute("boardList", boardList);
         model.addAttribute("member", loginMember);
         return "loginHome";
     }
