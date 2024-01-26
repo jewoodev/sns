@@ -12,7 +12,6 @@ import sns.demo.domain.Member;
 import sns.demo.dto.MemberForm;
 import sns.demo.dto.UpdateMemberPasswordForm;
 import sns.demo.service.MemberServiceImpl;
-import sns.demo.session.SessionManager;
 
 @Slf4j
 @Controller
@@ -20,7 +19,6 @@ import sns.demo.session.SessionManager;
 @RequestMapping("/members")
 public class MemberController {
     private final MemberServiceImpl memberServiceImpl;
-    private final SessionManager sessionManager;
 
     @GetMapping("/new")
     public String createMember(Model model) {
@@ -45,15 +43,16 @@ public class MemberController {
         }
 
         //성공 로직
-        String username = form.getUsername();
-        String password = form.getPassword1();
-        String email = form.getEmail();
-        Member member = new Member(null, username, password, email);
+        Member member = Member.builder()
+                .username(form.getUsername())
+                .password(form.getPassword1())
+                .email(form.getEmail())
+                .build();
 
 
         //유저 네임 중복의 경우 처리
         try {
-            Long joinedId = memberServiceImpl.join(member);
+            memberServiceImpl.join(member);
         } catch (IllegalStateException e) {
             result.rejectValue("username", "duplicatedUsername", e.getMessage());
             return "members/createMemberForm";

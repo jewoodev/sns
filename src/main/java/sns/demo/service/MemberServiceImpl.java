@@ -6,19 +6,15 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import sns.demo.domain.Member;
 import sns.demo.repository.MemberRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl {
 
     private final MemberRepository memberRepository;
 
@@ -27,28 +23,13 @@ public class MemberServiceImpl implements MemberService {
 
     //회원가입
     @Transactional
-    public Long join(Member member) throws IllegalStateException{
-        validateDuplicateMember(member); //중복 검증
-        memberRepository.save(member);
-        return member.getMemberId();
-    }
-
-    private void validateDuplicateMember(Member member) throws IllegalStateException, NoResultException {
-        try {
-            Member duplicatedMember = em.createQuery("select m from Member m where m.username = :username", Member.class)
-                    .setParameter("username", member.getUsername())
-                    .getSingleResult();
-            if (duplicatedMember != null) {
-                throw new IllegalStateException("이미 존재하는 아이디입니다.");
-            }
-        } catch (NoResultException e) {
-            return;
-        }
+    public String join(Member member) throws IllegalStateException{
+        return memberRepository.save(member);
     }
 
     //단일 회원 조회
-    public Member findOne(Long memberId) {
-        return memberRepository.findById(memberId).get();
+    public Member findByUsername(String username) {
+        return memberRepository.findByUsername(username).orElse(null);
     }
 
     //전체 회원 조회
@@ -67,10 +48,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Transactional
-    public Long updateMemberPassword(Member member, String newPassword) {
+    public String updateMemberPassword(Member member, String newPassword) {
         member.updatePassword(newPassword);
-        memberRepository.saveAndFlush(member);
+        memberRepository.save(member);
 
-        return member.getMemberId();
+        return member.getUsername();
     }
 }

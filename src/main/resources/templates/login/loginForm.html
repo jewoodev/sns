@@ -12,6 +12,7 @@
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
                th:text="${err}">전체 오류 메시지</p>
         </div>
+
         <div>
             <label for="username" class="form-label">로그인 ID</label>
             <input type="text" id="username" th:field="*{username}" class="form-control"

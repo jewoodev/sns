@@ -12,6 +12,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BoardService {
+
     private final BoardRepository boardRepository;
 
     public Long register(Board board) {

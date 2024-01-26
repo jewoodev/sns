@@ -12,17 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
-
+    @Id @Column(name = "username")
     private String username;
+
     private String password;
 
     @Column(unique = true)
     private String email;
 
-//    @OneToMany(mappedBy = "m", cascade = CascadeType.ALL)
-//    private List<Board> boardList = new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Board> boardList = new ArrayList<>();
 
     public void updatePassword(String password) {
         this.password = password;

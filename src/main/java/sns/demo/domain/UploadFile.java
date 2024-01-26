@@ -1,25 +1,27 @@
 package sns.demo.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Builder
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class UploadFile {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long fileId;
 
-    private String uploadFileName;
-    private String storeFileName;
+
+    private String filename;
+    private String filepath;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
 
-    public UploadFile(String uploadFileName, String storeFileName) {
-        this.uploadFileName = uploadFileName;
-        this.storeFileName = storeFileName;
+    public UploadFile(String filename, String filepath) {
+        this.filename = filename;
+        this.filepath = filepath;
     }
 }
