@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sns.demo.argumentresolver.Login;
 import sns.demo.domain.Member;
+import sns.demo.domain.Role;
 import sns.demo.dto.MemberForm;
 import sns.demo.dto.UpdateMemberPasswordForm;
 import sns.demo.service.MemberService;
@@ -18,7 +19,10 @@ import sns.demo.service.MemberService;
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
+
     private final MemberService memberService;
+//    private final BCryptPasswordEncoder passwordEncoder;
+
 
     @GetMapping("/new")
     public String createMember(Model model) {
@@ -35,18 +39,23 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        //비밀번호 확인 과정
+        // 1. 비밀번호 확인 과정
         if (form.getPassword1() != null && form.getPassword2() != null
                 && !form.getPassword1().equals(form.getPassword2())) {
             result.rejectValue("password2", "passwordIncorrect", "2개의 패스워드가 일치하지 않습니다.");
             return "members/createMemberForm";
         }
 
-        //성공 로직
+        // 2. 성공 로직
+        // 2-1. 비밀번호 인코딩
+//        String encodedPwd = passwordEncoder.encode(form.getPassword1());
+
         Member member = Member.builder()
                 .username(form.getUsername())
                 .password(form.getPassword1())
+//                .password(encodedPwd)
                 .email(form.getEmail())
+                .role(Role.USER.name())
                 .build();
 
 
@@ -58,7 +67,7 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/update/password")

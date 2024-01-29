@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: header}" />
+
 <body>
 <div class="container">
     <div class="py-5 text-center">
         <h2>로그인</h2>
     </div>
 
-    <form th:action th:object="${loginForm}" method="post">
+    <form th:action="@{/login}" th:object="${loginForm}" method="post"> <!-- 이 form이 submit 되면 "/login" 이 발동되면서 IoC 컨테이너에서 UserDetailsService 타입으로 등록되어 있는 bean을 찾는다, loadUserByUsername 메서드를 호출한다 -->
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
                th:text="${err}">전체 오류 메시지</p>

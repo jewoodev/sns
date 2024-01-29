@@ -23,6 +23,8 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
+    private String role;
+
     public void updatePassword(String password) {
         this.password = password;
     }
