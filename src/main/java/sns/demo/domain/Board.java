@@ -17,7 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Board {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    @Column(name = "board_id")
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String title;

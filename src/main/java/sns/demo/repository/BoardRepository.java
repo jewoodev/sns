@@ -15,7 +15,7 @@ public class BoardRepository {
 
     public Long save(Board board) {
         em.persist(board);
-        return board.getBoardId();
+        return board.getId();
     }
 
     public Optional<Board> findById(Long boardId) {

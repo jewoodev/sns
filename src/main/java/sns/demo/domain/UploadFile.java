@@ -8,10 +8,11 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "upload_file")
 public class UploadFile {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long fileId;
-
+    @Column(name = "upload_file_id")
+    private Long id;
 
     private String filename;
     private String filepath;

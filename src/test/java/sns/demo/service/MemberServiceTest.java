@@ -9,29 +9,32 @@ import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.Member;
 import sns.demo.repository.MemberRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @Transactional
-class MemberServiceImplTest {
+class MemberServiceTest {
 
     @Autowired
-    MemberServiceImpl memberServiceImpl;
+    MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
     @Test
     void join() {
-        Member member = new Member(null, "신제우", "1234", "asd@naver.com");
+        Member member = Member.builder()
+                .username("신제우")
+                .password("1234")
+                        .build();
         member.updatePassword("4567");
 
-        Long saveId = memberServiceImpl.join(member);
+        String username = memberService.join(member);
 
-        assertEquals(member, memberRepository.findById(saveId).get());
+        assertEquals(member, memberRepository.findByUsername(username).get());
     }
 
-    @Test
-    public void validDuplMember() {
+//    @Test
+//    public void validDuplMember() {
 //        Member member1 = new Member();
 //        member1.setUsername("신제우");
 //        member1.setPassword("1219");
@@ -39,19 +42,19 @@ class MemberServiceImplTest {
 //        Member member2 = new Member();
 //        member2.setUsername("신제우");
 //        member2.setPassword("1219");
-
+//
 //        assertThrows(IllegalStateException.class, () -> {
 //            memberServiceImpl.join(member1);
 //            memberServiceImpl.join(member2);
 //        });
-    }
+//    }
 
 
-    @Test
-    void findOne() {
-    }
-
-    @Test
-    void findMembers() {
-    }
+//    @Test
+//    void findOne() {
+//    }
+//
+//    @Test
+//    void findMembers() {
+//    }
 }

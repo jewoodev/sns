@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ import sns.demo.domain.Board;
 import sns.demo.domain.Member;
 import sns.demo.dto.LoginForm;
 import sns.demo.service.BoardService;
-import sns.demo.service.MemberServiceImpl;
+import sns.demo.service.MemberService;
 
 import java.util.List;
 
@@ -25,8 +26,9 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
-    private final MemberServiceImpl memberServiceImpl;
+    private final MemberService memberService;
     private final BoardService boardService;
+//    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @GetMapping("/login")
@@ -41,7 +43,7 @@ public class LoginController {
             return "login/loginForm";
         }
 
-        Member loginMember = memberServiceImpl.login(form.getUsername(), form.getPassword());
+        Member loginMember = memberService.login(form.getUsername(), form.getPassword());
         log.info("login? {}", loginMember);
 
         if (loginMember == null) {
@@ -55,6 +57,16 @@ public class LoginController {
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         return "redirect:/";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+
+    @GetMapping("/manager")
+    public String manager() {
+        return "manager";
     }
 
     @GetMapping("/")

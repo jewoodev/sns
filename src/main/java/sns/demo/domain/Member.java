@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-    @Id @Column(name = "username")
+    @Id
     private String username;
 
     private String password;

@@ -26,7 +26,7 @@ public class FileRepository {
 
     public Long save(UploadFile file) {
         em.persist(file);
-        return file.getFileId();
+        return file.getId();
     }
 
     public List<UploadFile> findAllByBoardId(Long boardId) {

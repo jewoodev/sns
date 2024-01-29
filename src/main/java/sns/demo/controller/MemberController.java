@@ -11,14 +11,14 @@ import sns.demo.argumentresolver.Login;
 import sns.demo.domain.Member;
 import sns.demo.dto.MemberForm;
 import sns.demo.dto.UpdateMemberPasswordForm;
-import sns.demo.service.MemberServiceImpl;
+import sns.demo.service.MemberService;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
-    private final MemberServiceImpl memberServiceImpl;
+    private final MemberService memberService;
 
     @GetMapping("/new")
     public String createMember(Model model) {
@@ -52,7 +52,7 @@ public class MemberController {
 
         //유저 네임 중복의 경우 처리
         try {
-            memberServiceImpl.join(member);
+            memberService.join(member);
         } catch (IllegalStateException e) {
             result.rejectValue("username", "duplicatedUsername", e.getMessage());
             return "members/createMemberForm";
@@ -88,7 +88,7 @@ public class MemberController {
         }
 
         String newPassword = form.getNewPassword();
-        memberServiceImpl.updateMemberPassword(loginMember, newPassword);
+        memberService.updateMemberPassword(loginMember, newPassword);
 
         return "redirect:/";
     }
