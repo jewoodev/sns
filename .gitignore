@@ -1,6 +1,7 @@
 /troubleShooting/*
 HELP.md
 .gradle
+application.yml
 #build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

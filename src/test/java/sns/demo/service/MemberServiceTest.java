@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.Member;
-import sns.demo.repository.MemberRepository;
+import sns.demo.domain.repository.MemberRepository;
+import sns.demo.web.service.MemberService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

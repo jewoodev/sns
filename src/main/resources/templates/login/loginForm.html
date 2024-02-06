@@ -9,8 +9,8 @@
     </div>
 
     <form th:action="@{/login}" th:object="${loginForm}" method="post"> <!-- 이 form이 submit 되면 "/login" 이 발동되면서 IoC 컨테이너에서 UserDetailsService 타입으로 등록되어 있는 bean을 찾는다, loadUserByUsername 메서드를 호출한다 -->
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+        <div th:if="${error != null}">
+            <p class="field-error" th:each="err : ${exception}"
                th:text="${err}">전체 오류 메시지</p>
         </div>
 
@@ -18,14 +18,14 @@
             <label for="username" class="form-label">로그인 ID</label>
             <input type="text" id="username" th:field="*{username}" class="form-control"
                    th:errorclass="field-error">
-            <div class="field-error" th:errors="*{username}" />
+<!--            <div class="field-error" th:errors="*{username}" />-->
         </div>
         <div>
             <label for="password" class="form-label">비밀번호</label>
             <input type="password" id="password" th:field="*{password}"
                    class="form-control"
                    th:errorclass="field-error">
-            <div class="field-error" th:errors="*{password}" />
+<!--            <div class="field-error" th:errors="*{password}" />-->
         </div>
 
         <hr class="my-4">

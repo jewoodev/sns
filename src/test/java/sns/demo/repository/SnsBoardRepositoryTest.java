@@ -9,7 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.Board;
 import sns.demo.domain.Member;
-import sns.demo.session.SessionManager;
+import sns.demo.domain.repository.BoardRepository;
+import sns.demo.web.session.SessionManager;
 
 import static org.assertj.core.api.Assertions.*;
 

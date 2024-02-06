@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import sns.demo.domain.Member;
+import sns.demo.web.session.SessionManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
