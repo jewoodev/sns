@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col">
-            <button th:if="${loginMember.username eq board.getMember().username}"
+            <button th:if="${username eq board.getUserEntity().username}"
                     class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='home.html'"
                     th:onclick="|location.href='@{/}'|"

@@ -1,16 +1,16 @@
 package sns.demo.web.controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import sns.demo.domain.Board;
-import sns.demo.domain.Member;
+import sns.demo.domain.entity.BoardEntity;
 import sns.demo.web.service.BoardService;
 
 import java.util.List;
@@ -24,15 +24,16 @@ public class IndexController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String home(Authentication a, Model model) {
-        if (a == null) {
+    public String home(Authentication authentication, Model model) {
+
+        if (authentication == null) {
             return "home";
         }
 
-        List<Board> boardList = boardService.findBoards();
+        List<BoardEntity> boards = boardService.findBoards();
 
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("username", a.getName());
+        model.addAttribute("boardList", boards);
+        model.addAttribute("username", authentication.getName());
         return "loginHome";
     }
 

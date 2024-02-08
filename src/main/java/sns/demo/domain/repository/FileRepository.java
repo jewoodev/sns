@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
-import sns.demo.domain.UploadFile;
+import sns.demo.domain.entity.FileEntity;
 import sns.demo.web.service.BoardService;
 
 import java.io.File;
@@ -26,24 +26,24 @@ public class FileRepository {
     @Value("${file.dir}")
     private String fileDir;
 
-    public Long save(UploadFile file) {
+    public Long save(FileEntity file) {
         em.persist(file);
         return file.getId();
     }
 
-    public List<UploadFile> findAllByBoardId(Long boardId) {
-        return em.createQuery("select f from UploadFile f where f.board = :board", UploadFile.class)
+    public List<FileEntity> findAllByBoardId(Long boardId) {
+        return em.createQuery("select f from FileEntity f where f.boardEntity = :board", FileEntity.class)
                 .setParameter("board", boardService.findOne(boardId))
                 .getResultList();
     }
 
-    public Optional<UploadFile> findByFileName(String filename) {
+    public Optional<FileEntity> findByFileName(String filename) {
 
-        Optional<UploadFile> optionalResult;
+        Optional<FileEntity> optionalResult;
 
         try {
-            UploadFile file = em.createQuery(
-                            "select f from UploadFile f where f.filename = :filename", UploadFile.class)
+            FileEntity file = em.createQuery(
+                            "select f from FileEntity f where f.filename = :filename", FileEntity.class)
                     .setParameter("filename", filename)
                     .getSingleResult();
             optionalResult = Optional.of(file);
@@ -57,8 +57,8 @@ public class FileRepository {
         return fileDir + filename;
     }
 
-    public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
-        List<UploadFile> storeImageResult = new ArrayList<>();
+    public List<FileEntity> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
+        List<FileEntity> storeImageResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             if (!multipartFile.isEmpty()) {
                 storeImageResult.add(storeFile(multipartFile));
@@ -67,7 +67,7 @@ public class FileRepository {
         return storeImageResult;
     }
 
-    public UploadFile storeFile(MultipartFile multipartFile) throws IOException {
+    public FileEntity storeFile(MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
             return null;
         }
@@ -76,7 +76,7 @@ public class FileRepository {
         String storeFileName = createStoreFileName(originalFilename);
         String fullPath = getFullPath(storeFileName);
         multipartFile.transferTo(new File(fullPath));
-        return new UploadFile(originalFilename, storeFileName);
+        return new FileEntity(originalFilename, storeFileName);
     }
 
     private String createStoreFileName(String originalFilename) {

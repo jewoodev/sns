@@ -1,23 +1,20 @@
 package sns.demo.web.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import sns.demo.domain.Member;
-import sns.demo.domain.dto.LoginForm;
+import sns.demo.domain.dto.LoginDTO;
+import sns.demo.domain.entity.BoardEntity;
 import sns.demo.web.service.BoardService;
-import sns.demo.web.service.MemberService;
+
+import java.util.List;
 
 
 @Slf4j
@@ -26,7 +23,7 @@ import sns.demo.web.service.MemberService;
 public class LoginController {
 
 //    private final MemberService memberService;
-//    private final BoardService boardService;
+    private final BoardService boardService;
 //    private final BCryptPasswordEncoder passwordEncoder;
 
 //    @PostMapping("/login")
@@ -54,16 +51,26 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginForm(
-            @ModelAttribute("loginForm") LoginForm form,
+            @ModelAttribute("loginForm") LoginDTO form,
             @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "exception", required = false) String exception, Model model) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         model.addAttribute("loginForm", form);
-        log.info("error = {}", error);
-        log.info("exception = {}", exception);
-        log.info("loginForm view is resolved");
         return "/login/loginForm";
+    }
+
+    @PostMapping("/login")
+    public String loginSuccessfully(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        List<BoardEntity> boards = boardService.findBoards();
+
+        log.info("Authentication after login = {}", authentication);
+
+        model.addAttribute("boardList", boards);
+        model.addAttribute("username", authentication.getName());
+        return "/loginHome";
     }
 
     @GetMapping("/admin")

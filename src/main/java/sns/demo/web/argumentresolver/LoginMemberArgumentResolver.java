@@ -8,8 +8,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import sns.demo.web.controller.SessionConst;
-import sns.demo.domain.Member;
+import sns.demo.web.session.SessionConst;
+import sns.demo.domain.entity.UserEntity;
 
 @Slf4j
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
@@ -18,7 +18,7 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
     public boolean supportsParameter(MethodParameter parameter) {
         log.info("supportsParameter 실행");
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
-        boolean hasMemberType = Member.class.isAssignableFrom(parameter.getParameterType());
+        boolean hasMemberType = UserEntity.class.isAssignableFrom(parameter.getParameterType());
 
         return hasLoginAnnotation && hasMemberType;
     }

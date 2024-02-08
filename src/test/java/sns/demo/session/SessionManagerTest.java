@@ -3,7 +3,7 @@ package sns.demo.session;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import sns.demo.domain.Member;
+import sns.demo.domain.entity.UserEntity;
 import sns.demo.web.session.SessionManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,8 +15,8 @@ public class SessionManagerTest {
     void sessionTest() {
         // 세션 생성
         MockHttpServletResponse response = new MockHttpServletResponse();
-        Member member = new Member();
-        sessionManager.createSession(member, response);
+        UserEntity userEntity = new UserEntity();
+        sessionManager.createSession(userEntity, response);
 
         // 요청에 응답 쿠키 저장
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -24,7 +24,7 @@ public class SessionManagerTest {
 
         // 세션 조회
         Object result = sessionManager.getSession(request);
-        assertThat(result).isEqualTo(member);
+        assertThat(result).isEqualTo(userEntity);
 
         // 세션 만료
         sessionManager.expireSession(request);

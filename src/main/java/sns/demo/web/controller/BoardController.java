@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -11,13 +12,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sns.demo.domain.Board;
-import sns.demo.domain.Member;
-import sns.demo.domain.UploadFile;
-import sns.demo.domain.dto.BoardForm;
-import sns.demo.domain.repository.FileRepository;
-import sns.demo.web.argumentresolver.Login;
+import sns.demo.domain.dto.CustomUserDetails;
+import sns.demo.domain.entity.BoardEntity;
+import sns.demo.domain.entity.FileEntity;
+import sns.demo.domain.dto.BoardDTO;
 import sns.demo.web.service.BoardService;
+import sns.demo.web.service.CustomUserDetailsService;
+import sns.demo.web.service.FileService;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,70 +29,76 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class BoardController {
+
     private final BoardService boardService;
-    private final FileRepository fileRepository;
+    private final FileService fileService;
+    private final CustomUserDetailsService userDetailsService;
 
     @GetMapping("/board/new")
     public String createBoard(Model model) {
-        model.addAttribute("boardForm", new BoardForm());
+        model.addAttribute("boardForm", new BoardDTO());
         return "board/createBoardForm";
     }
 
     @PostMapping("/board/new")
-    public String createBoard(@Validated @ModelAttribute BoardForm form, BindingResult result, @Login Member loginMember, RedirectAttributes redirectAttributes) throws IOException {
+    public String createBoard(@Validated @ModelAttribute BoardDTO form,
+                              BindingResult result, Authentication a,
+                              RedirectAttributes redirectAttributes) throws IOException {
         if (result.hasErrors()) {
             return "board/createBoardForm";
         }
 
-        List<UploadFile> images = fileRepository.storeFiles(form.getImageFiles());
+        CustomUserDetails userDetails = userDetailsService.loadUserByUsername(a.getName());
 
-        Board board = Board.builder()
+        List<FileEntity> images = fileService.uploadFiles(form.getImageFiles());
+
+        BoardEntity boardEntity = BoardEntity.builder()
                             .title(form.getTitle())
                             .content(form.getContent())
-                            .member(loginMember)
+                            .userEntity(userDetails.getUserEntity())
                             .boardImages(images)
                             .build();
 
         if (!images.isEmpty()) {
-            for (UploadFile image : images) {
-                UploadFile file = UploadFile.builder()
-                                                    .board(board)
+            for (FileEntity image : images) {
+                FileEntity file = FileEntity.builder()
+                                                    .boardEntity(boardEntity)
                                                     .filename(image.getFilename())
                                                     .filepath(image.getFilepath())
                                                     .build();
-                fileRepository.save(file);
+                fileService.upload(file);
             }
         }
 
-        Long id = boardService.register(board);
+        Long id = boardService.register(boardEntity);
         redirectAttributes.addAttribute("id", id);
         return "redirect:/board/{id}";
     }
 
     @GetMapping("/board/{id}")
-    public String referBoard(@PathVariable(name = "id") Long id, @Login Member loginMember, Model model) {
-        Board board = boardService.findOne(id);
-        log.info("Board = {}", board);
-        List<UploadFile> boardImages = fileRepository.findAllByBoardId(id);
+    public String referBoard(@PathVariable(name = "id") Long id, Authentication a, Model model) {
+        BoardEntity boardEntity = boardService.findOne(id);
+        log.info("Board = {}", boardEntity);
+        List<FileEntity> boardImages = fileService.findAllByBoardId(id);
 
-        for (UploadFile boardImage : boardImages) {
+        for (FileEntity boardImage : boardImages) {
             log.info("BoardImagePath = {}", boardImage.getFilepath());
         }
 
-        model.addAttribute("board", board);
+        model.addAttribute("board", boardEntity);
         model.addAttribute("boardImages", boardImages);
-        model.addAttribute("loginMember", loginMember);
+        model.addAttribute("username", a.getName());
         return "board/referBoard";
     }
 
     @ResponseBody
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable(name = "filename") String filename) throws MalformedURLException {
-        UploadFile boardImage = null;
-        if (fileRepository.findByFileName(filename).isPresent()) {
-             boardImage = fileRepository.findByFileName(filename).get();
+        FileEntity boardImage = null;
+        if (fileService.findByFileName(filename).isPresent()) {
+             boardImage = fileService.findByFileName(filename).get();
         }
-        log.info("boardImage.url = {}", fileRepository.getFullPath(boardImage.getFilepath()));
-        return new UrlResource("file:" + fileRepository.getFullPath(boardImage.getFilepath()));
+        log.info("boardImage.url = {}", fileService.getFullPath(boardImage.getFilepath()));
+        return new UrlResource("file:" + fileService.getFullPath(boardImage.getFilepath()));
     }
 }

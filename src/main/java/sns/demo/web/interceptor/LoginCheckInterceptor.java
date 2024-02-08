@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
-import sns.demo.web.controller.SessionConst;
+import sns.demo.web.session.SessionConst;
 
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
