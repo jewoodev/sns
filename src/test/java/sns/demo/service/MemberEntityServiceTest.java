@@ -6,32 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import sns.demo.domain.entity.UserEntity;
+import sns.demo.domain.entity.MemberEntity;
 import sns.demo.domain.repository.MemberRepository;
-import sns.demo.web.service.UserService;
+import sns.demo.web.service.MemberService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @Transactional
-class UserEntityServiceTest {
+class MemberEntityServiceTest {
 
     @Autowired
-    UserService userService;
+    MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
     @Test
     void join() {
-        UserEntity userEntity = UserEntity.builder()
+        MemberEntity memberEntity = MemberEntity.builder()
                 .username("신제우")
                 .password("1234")
                         .build();
-        userEntity.updatePassword("4567");
+        memberEntity.updatePassword("4567");
 
-        String username = userService.join(userEntity);
+        String username = memberService.join(memberEntity);
 
-        assertEquals(userEntity, memberRepository.findByUsername(username).get());
+        assertEquals(memberEntity, memberRepository.findByUsername(username).get());
     }
 
 //    @Test

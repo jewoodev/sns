@@ -10,14 +10,13 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import sns.demo.domain.Role;
-import sns.demo.web.jwt.JwtUtil;
-import sns.demo.web.jwt.LoginFilter;
+import sns.demo.web.auth.CustomAuthFailureHandler;
 import sns.demo.web.service.CustomUserDetailsService;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @RequiredArgsConstructor
@@ -25,8 +24,7 @@ import sns.demo.web.service.CustomUserDetailsService;
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록이 됩니다.
 public class SecurityConfig {
 
-    private final CustomUserDetailsService userDetailsService;
-    private final JwtUtil jwtUtil;
+    private final CustomAuthFailureHandler failureHandler;
 
 
     // 해당 메서드에서 리턴되는 오브젝트를 IoC로 등록해준다
@@ -54,24 +52,26 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable
                 )
-                .formLogin(AbstractHttpConfigurer::disable
-                )
                 .httpBasic(AbstractHttpConfigurer::disable
-                )
-                .addFilterAt(
-                        new LoginFilter(authenticationManager(userDetailsService, bCryptPasswordEncoder()), jwtUtil),
-                        UsernamePasswordAuthenticationFilter.class
                 )
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
                                 .requestMatchers("/", "/login/**", "/error/**",
                                         "/bootstrap.min.css", "/style.css", "/favicon/**",
-                                        "/users/new").permitAll()
+                                        "/members/new").permitAll()
                                 .requestMatchers("/login/home").hasAuthority(Role.USER.name())
                                 .anyRequest().authenticated()
                 )
-                .sessionManagement((session) -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
+                )
+                .formLogin(loginFail -> loginFail
+                        .failureHandler(failureHandler))
+                .logout(withDefaults());
+
         return http.build();
     }
 

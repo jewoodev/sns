@@ -36,7 +36,7 @@ public class BoardController {
 
     @GetMapping("/board/new")
     public String createBoard(Model model) {
-        model.addAttribute("boardForm", new BoardDTO());
+        model.addAttribute("boardDTO", new BoardDTO());
         return "board/createBoardForm";
     }
 
@@ -55,7 +55,7 @@ public class BoardController {
         BoardEntity boardEntity = BoardEntity.builder()
                             .title(form.getTitle())
                             .content(form.getContent())
-                            .userEntity(userDetails.getUserEntity())
+                            .memberEntity(userDetails.getMemberEntity())
                             .boardImages(images)
                             .build();
 

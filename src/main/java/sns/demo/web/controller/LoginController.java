@@ -60,28 +60,6 @@ public class LoginController {
         return "/login/loginForm";
     }
 
-    @PostMapping("/login")
-    public String loginSuccessfully(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<BoardEntity> boards = boardService.findBoards();
-
-        log.info("Authentication after login = {}", authentication);
-
-        model.addAttribute("boardList", boards);
-        model.addAttribute("username", authentication.getName());
-        return "/loginHome";
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
-
-    @GetMapping("/manager")
-    public String manager() {
-        return "manager";
-    }
 
 //    @GetMapping("/logout")
 //    public String logout(HttpServletRequest request) {

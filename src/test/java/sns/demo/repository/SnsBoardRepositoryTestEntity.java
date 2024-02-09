@@ -8,7 +8,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.entity.BoardEntity;
-import sns.demo.domain.entity.UserEntity;
+import sns.demo.domain.entity.MemberEntity;
 import sns.demo.domain.repository.BoardRepository;
 import sns.demo.web.session.SessionManager;
 
@@ -28,7 +28,7 @@ class SnsBoardRepositoryTestEntity {
         BoardEntity boardEntity = BoardEntity.builder()
                 .title("제우식당")
                 .content("맛집은 세상을 아름답게해")
-                .userEntity(UserEntity.builder()
+                .memberEntity(MemberEntity.builder()
                         .username("신제우")
                         .password("1234")
                         .email("asd@naver.com")
@@ -39,7 +39,7 @@ class SnsBoardRepositoryTestEntity {
 
         BoardEntity foundOne = repository.findById(boardEntity.getId()).get();
         assertThat(foundOne.getId()).isEqualTo(boardEntity.getId());
-        assertThat(foundOne.getUserEntity()).isEqualTo(boardEntity.getUserEntity());
+        assertThat(foundOne.getMemberEntity()).isEqualTo(boardEntity.getMemberEntity());
         assertThat(foundOne.getContent()).isEqualTo(boardEntity.getContent());
         assertThat(foundOne.getCreatedDate()).isEqualTo(boardEntity.getCreatedDate());
         assertThat(foundOne).isEqualTo(boardEntity);
