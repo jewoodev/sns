@@ -3,7 +3,7 @@ package sns.demo.domain.repository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import sns.demo.domain.entity.MemberEntity;
+import sns.demo.domain.entity.Member;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,22 +14,22 @@ public class MemberRepository {
 
     private final EntityManager em;
 
-    public String save(MemberEntity memberEntity) {
-        em.persist(memberEntity);
-        return memberEntity.getUsername();
+    public String save(Member member) {
+        em.persist(member);
+        return member.getUsername();
     }
 
 
-    public Optional<MemberEntity> findByUsername(String username) {
+    public Optional<Member> findByUsername(String username) {
 
-        List<MemberEntity> userEntities = em.createQuery("select m from MemberEntity m where m.username = :username", MemberEntity.class)
+        List<Member> userEntities = em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)
                 .getResultList();
         return userEntities.isEmpty() ? Optional.empty() : Optional.of(userEntities.get(0));
     }
 
-    public List<MemberEntity> findAll() {
-        return em.createQuery("select m from MemberEntity m", MemberEntity.class)
+    public List<Member> findAll() {
+        return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
 
@@ -38,7 +38,7 @@ public class MemberRepository {
      */
     public void existsByUsername(String username) {
 
-        List<MemberEntity> userEntities = em.createQuery("select m from MemberEntity m where m.username = :username", MemberEntity.class)
+        List<Member> userEntities = em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)
                 .getResultList();
         if (!userEntities.isEmpty()) {
@@ -51,7 +51,7 @@ public class MemberRepository {
      */
     public void existsByEmail(String email) {
 
-        List<MemberEntity> userEntities = em.createQuery("select m from MemberEntity m where m.email = :email", MemberEntity.class)
+        List<Member> userEntities = em.createQuery("select m from Member m where m.email = :email", Member.class)
                 .setParameter("email", email)
                 .getResultList();
         if (!userEntities.isEmpty()) {
@@ -59,8 +59,8 @@ public class MemberRepository {
             }
     }
 
-    public void updatePassword(MemberEntity memberEntity, String newPassword) {
-        memberEntity.updatePassword(newPassword);
+    public void updatePassword(Member member, String newPassword) {
+        member.updatePassword(newPassword);
         em.flush();
     }
 }

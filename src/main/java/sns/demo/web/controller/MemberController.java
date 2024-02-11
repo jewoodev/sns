@@ -8,10 +8,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sns.demo.domain.dto.CustomUserDetails;
-import sns.demo.domain.entity.MemberEntity;
+import sns.demo.domain.entity.Member;
 import sns.demo.domain.Role;
 import sns.demo.domain.dto.JoinDTO;
 import sns.demo.domain.dto.UpdatePasswordDTO;
@@ -35,7 +36,7 @@ public class MemberController {
 
     @PostMapping("/new")
     public String createMember(@Validated @ModelAttribute JoinDTO form,
-                               BindingResult result) {
+                               BindingResult result, Errors errors) {
 
         if (result.hasErrors()) {
             log.info("errors={}", result);
@@ -49,11 +50,28 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        // 2. 성공 로직
-        // 2-1. 비밀번호 인코딩
+        // 2. 이메일 중복 검증
+        try {
+            memberService.existsByEmail(form.getEmail());
+        } catch (IllegalStateException | InvalidDataAccessApiUsageException e) {
+            result.rejectValue("email", "duplicatedEmail", e.getMessage());
+            return "members/createMemberForm";
+        }
+
+
+        // 3. 유저 네임 중복의 경우 처리
+        try {
+            memberService.existByUsername(form.getUsername());
+        } catch (IllegalStateException | InvalidDataAccessApiUsageException e) {
+            result.rejectValue("username", "duplicatedUsername", e.getMessage());
+            return "members/createMemberForm";
+        }
+
+        // 4. 성공 로직
+        // 4-1. 비밀번호 인코딩
         String encodedPwd = passwordEncoder.encode(form.getPassword1());
 
-        MemberEntity memberEntity = MemberEntity.builder()
+        Member member = Member.builder()
                 .username(form.getUsername())
 //                .password(form.getPassword1())
                 .password(encodedPwd)
@@ -61,14 +79,7 @@ public class MemberController {
                 .role(Role.USER.name())
                 .build();
 
-
-        //유저 네임 중복의 경우 처리
-        try {
-            memberService.join(memberEntity);
-        } catch (IllegalStateException | InvalidDataAccessApiUsageException e) {
-            result.rejectValue("username", "duplicatedUsername", e.getMessage());
-            return "members/createMemberForm";
-        }
+        memberService.join(member);
 
         return "redirect:/login";
     }
@@ -102,10 +113,8 @@ public class MemberController {
             return "members/updateMemberPasswordForm";
         }
 
-        log.info("뭐가 문제니?");
-
-        String newPassword = passwordEncoder.encode(form.getNewPassword());
-        memberService.updateMemberPassword(userDetails.getMemberEntity(), newPassword);
+            String newPassword = passwordEncoder.encode(form.getNewPassword());
+        memberService.updateMemberPassword(userDetails.getMember(), newPassword);
 
         return "redirect:/";
     }

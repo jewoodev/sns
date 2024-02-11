@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import sns.demo.domain.entity.FileEntity;
+import sns.demo.domain.entity.File;
 import sns.demo.domain.repository.FileRepository;
 
 import java.io.IOException;
@@ -23,20 +23,20 @@ public class FileService {
     }
 
     @Transactional
-    public Long upload(FileEntity fileEntity) {
-        return fileRepository.save(fileEntity);
+    public Long upload(File file) {
+        return fileRepository.save(file);
     }
 
     @Transactional
-    public List<FileEntity> uploadFiles(List<MultipartFile> multipartFiles) throws IOException {
+    public List<File> uploadFiles(List<MultipartFile> multipartFiles) throws IOException {
         return fileRepository.storeFiles(multipartFiles);
     }
 
-    public Optional<FileEntity> findByFileName(String filename) {
+    public Optional<File> findByFileName(String filename) {
         return fileRepository.findByFileName(filename);
     }
 
-    public List<FileEntity> findAllByBoardId(Long boardId) {
+    public List<File> findAllByBoardId(Long boardId) {
         return fileRepository.findAllByBoardId(boardId);
     }
 }

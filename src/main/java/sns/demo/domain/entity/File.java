@@ -8,10 +8,9 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "upload_file")
-public class FileEntity extends BaseTimeEntity {
+public class File extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "upload_file_id")
+    @Column(name = "file_id")
     private Long id;
 
     private String filename;
@@ -19,9 +18,9 @@ public class FileEntity extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
-    private BoardEntity boardEntity;
+    private Board board;
 
-    public FileEntity(String filename, String filepath) {
+    public File(String filename, String filepath) {
         this.filename = filename;
         this.filepath = filepath;
     }

@@ -1,16 +1,14 @@
 package sns.demo.web.controller;
 
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import sns.demo.domain.entity.BoardEntity;
+import sns.demo.domain.entity.Board;
 import sns.demo.web.service.BoardService;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class IndexController {
             return "home";
         }
 
-        List<BoardEntity> boards = boardService.findBoards();
+        List<Board> boards = boardService.findBoards();
 
         model.addAttribute("boardList", boards);
         model.addAttribute("username", authentication.getName());

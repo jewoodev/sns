@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import sns.demo.domain.dto.CustomUserDetails;
-import sns.demo.domain.entity.MemberEntity;
+import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.MemberRepository;
 
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<MemberEntity> userData = memberRepository.findByUsername(username);
+        Optional<Member> userData = memberRepository.findByUsername(username);
 
         return userData.map(CustomUserDetails::new).orElse(null);
     }

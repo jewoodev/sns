@@ -3,7 +3,7 @@ package sns.demo.web.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sns.demo.domain.entity.BoardEntity;
+import sns.demo.domain.entity.Board;
 import sns.demo.domain.repository.BoardRepository;
 
 import java.util.List;
@@ -15,17 +15,17 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public Long register(BoardEntity boardEntity) {
-        return boardRepository.save(boardEntity);
+    public Long register(Board board) {
+        return boardRepository.save(board);
     }
 
 
-    public BoardEntity findOne(Long boardId) {
+    public Board findOne(Long boardId) {
         return boardRepository.findById(boardId).orElse(null);
     }
 
 
-    public List<BoardEntity> findBoards() {
+    public List<Board> findBoards() {
         return boardRepository.findAll();
     }
 

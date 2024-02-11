@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import sns.demo.domain.entity.MemberEntity;
+import sns.demo.domain.entity.Member;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,23 +13,23 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private final MemberEntity memberEntity;
+    private final Member member;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collect = new ArrayList<>();
-        collect.add((GrantedAuthority) memberEntity::getRole);
+        collect.add((GrantedAuthority) member::getRole);
         return collect;
     }
 
     @Override
     public String getPassword() {
-        return memberEntity.getPassword();
+        return member.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return memberEntity.getUsername();
+        return member.getUsername();
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberEntity extends BaseTimeEntity {
+public class Member extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
@@ -24,8 +24,11 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.ALL)
-    private List<BoardEntity> boardEntityList = new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Board> boardList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
     private String role;
 
