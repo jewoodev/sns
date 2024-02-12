@@ -26,4 +26,19 @@ public class BoardRepository {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
+    public void delete(Board board) {
+        em.remove(board);
+    }
+
+    public void increaseViews(Board board) {
+        board.increaseViews();
+    }
+
+    public void increaseLikes(Board board) {
+        board.increaseLikes();
+    }
+
+    public void decreaseLikes(Board board) {
+        board.decreaseLikes();
+    }
 }

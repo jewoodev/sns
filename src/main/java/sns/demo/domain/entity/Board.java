@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 
@@ -34,8 +35,26 @@ public class Board extends BaseTimeEntity {
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
+    @ColumnDefault("0")
+    private Long viewCount;
+
+    @ColumnDefault("0")
+    private Long likeCount;
+
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void increaseViews() {
+        ++this.viewCount;
+    }
+
+    public void increaseLikes() {
+        ++this.likeCount;
+    }
+
+    public void decreaseLikes() {
+        --this.likeCount;
     }
 }

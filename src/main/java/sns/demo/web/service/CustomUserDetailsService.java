@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.dto.CustomUserDetails;
 import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.MemberRepository;
 
 import java.util.Optional;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

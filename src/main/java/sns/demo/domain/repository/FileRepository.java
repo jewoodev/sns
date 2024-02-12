@@ -32,7 +32,7 @@ public class FileRepository {
 
     public List<File> findAllByBoardId(Long boardId) {
         return em.createQuery("select f from File f where f.board = :board", File.class)
-                .setParameter("board", boardService.findOne(boardId))
+                .setParameter("board", boardService.findById(boardId))
                 .getResultList();
     }
 

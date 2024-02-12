@@ -2,6 +2,7 @@ package sns.demo.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import sns.demo.domain.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,8 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    private String role;
-
-//    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
-//    private List<Authority> authorities;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public void updatePassword(String password) {
         this.password = password;

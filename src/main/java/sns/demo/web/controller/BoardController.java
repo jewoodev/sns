@@ -14,18 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sns.demo.domain.dto.CommentDTO;
 import sns.demo.domain.dto.CustomUserDetails;
-import sns.demo.domain.entity.Board;
-import sns.demo.domain.entity.Comment;
-import sns.demo.domain.entity.File;
+import sns.demo.domain.entity.*;
 import sns.demo.domain.dto.BoardDTO;
-import sns.demo.web.service.BoardService;
-import sns.demo.web.service.CommentService;
-import sns.demo.web.service.CustomUserDetailsService;
-import sns.demo.web.service.FileService;
+import sns.demo.web.service.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -37,6 +34,7 @@ public class BoardController {
     private final FileService fileService;
     private final CustomUserDetailsService userDetailsService;
     private final CommentService commentService;
+    private final LikeService likeService;
 
     @GetMapping("/board/new")
     public String createBoard(Model model) {
@@ -80,24 +78,37 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}")
-    public String referBoard(@PathVariable(name = "id") Long id, Authentication a,
+    public String referBoard(@PathVariable(name = "id") Long id, Authentication authentication,
                              CommentDTO commentDTO, Model model) {
-        Board board = boardService.findOne(id);
-        log.info("Board = {}", board);
+        Board board = boardService.findById(id);
         List<File> boardImages = fileService.findAllByBoardId(id);
 
-        for (File boardImage : boardImages) {
-            log.info("BoardImagePath = {}", boardImage.getFilepath());
-        }
+        // 1. 조회수 기능 구현
+        boardService.increaseViews(board);
+        model.addAttribute("viewCount", board.getViewCount());
 
+        // 2. 해당 게시물, 게시물의 이미지들, 댓글 작성란에 기재되는 유저네임
         model.addAttribute("board", board);
         model.addAttribute("boardImages", boardImages);
-        model.addAttribute("username", a.getName());
+        model.addAttribute("username", authentication.getName());
 
-        // 해당 게시물의 댓글 조회와 댓글 작성 기능 구현
+        // 3. 해당 게시물의 댓글 조회와 댓글 작성 기능 구현
         List<Comment> comments = commentService.findByBoardId(id);
         model.addAttribute("comments", comments);
         model.addAttribute("commentDTO", commentDTO);
+
+        // 4. 해당 게시물 좋아요 기능 구현
+        Long likeCount = board.getLikeCount();
+        model.addAttribute("likeCount", likeCount); // 게시물의 좋아요 총 갯수
+
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Member member = userDetails.getMember(); // 로그인 한 유저
+
+        Likes likes;
+        Optional<Likes> optional = likeService.findByBoardAndMember(board, member);
+        likes = optional.orElseGet(() -> likeService.init(member, board));
+        boolean doLike = likes.isDoLike();
+        model.addAttribute("doLike", doLike); // 로그인 되어있는 유저가 게시물에 좋아요를 눌렀는지의 여부
 
         return "board/referBoard";
     }

@@ -8,6 +8,7 @@ import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.MemberRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +16,6 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final EntityManager em;
 
     /**
      * 회원가입
@@ -29,6 +29,8 @@ public class MemberService {
     /**
      * 단일 회원 조회
      */
+    public Optional<Member> findById(Long id) {return memberRepository.findById(id);}
+
     public Member findByUsername(String username) {
         return memberRepository.findByUsername(username).orElse(null);
     }
@@ -45,8 +47,7 @@ public class MemberService {
      */
     @Transactional
     public void updateMemberPassword(Member memberParam, String newPassword) {
-        Member findMember = em.find(Member.class, memberParam.getId());
-        memberRepository.updatePassword(findMember, newPassword);
+        memberRepository.updatePassword(memberParam.getId(), newPassword);
     }
 
 //    /**

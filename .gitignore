@@ -2,6 +2,8 @@
 HELP.md
 .gradle
 application.yml
+src/main/resources/images
+
 #build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

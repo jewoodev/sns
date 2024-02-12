@@ -19,13 +19,20 @@ public class MemberRepository {
         return member.getUsername();
     }
 
+    public Optional<Member> findById(Long id) {
+        List<Member> members = em.createQuery("select m from Member m where m.id = :id", Member.class)
+                .setParameter("id", id)
+                .getResultList();
+        return members.isEmpty() ? Optional.empty() : Optional.of(members.get(0));
+    }
+
 
     public Optional<Member> findByUsername(String username) {
 
-        List<Member> userEntities = em.createQuery("select m from Member m where m.username = :username", Member.class)
+        List<Member> members = em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)
                 .getResultList();
-        return userEntities.isEmpty() ? Optional.empty() : Optional.of(userEntities.get(0));
+        return members.isEmpty() ? Optional.empty() : Optional.of(members.get(0));
     }
 
     public List<Member> findAll() {
@@ -59,8 +66,8 @@ public class MemberRepository {
             }
     }
 
-    public void updatePassword(Member member, String newPassword) {
-        member.updatePassword(newPassword);
-        em.flush();
+    public void updatePassword(Long id, String newPassword) {
+        Member findMember = em.find(Member.class, id);
+        findMember.updatePassword(newPassword);
     }
 }

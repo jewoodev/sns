@@ -8,6 +8,11 @@
         <h3 th:text="${board.getTitle()}">게시물 조회</h3>
     </div>
     <br>
+    <form th:action="@{/board/{id}/likes (id=${board.getId()})}" th:method="post">
+        <button type="submit">
+            <img th:src="${doLike} ? '/heart-fill.svg' : '/heart.svg'" alt="Favorite button" />
+        </button>
+    </form>
     <div>
         <span th:text="${board.getContent()}">게시물 내용</span>
     </div>
@@ -31,6 +36,8 @@
                     type="button">돌아가기</button>
         </div>
     </div>
+
+
 
     <div class="card my-4">
         <h5 class="card-header">댓글</h5>

@@ -8,19 +8,20 @@ import sns.demo.domain.repository.BoardRepository;
 
 import java.util.List;
 
-@Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Service
 public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    @Transactional
     public Long register(Board board) {
         return boardRepository.save(board);
     }
 
 
-    public Board findOne(Long boardId) {
+    public Board findById(Long boardId) {
         return boardRepository.findById(boardId).orElse(null);
     }
 
@@ -30,10 +31,23 @@ public class BoardService {
     }
 
 
-    public void deleteOne(int boardId) {
-
+    @Transactional
+    public void deleteById(Board board) {
+        boardRepository.delete(board);
     }
 
-//    @Transactional
-//    public void uploadBoardImage(String)
+    @Transactional
+    public void increaseViews(Board board) {
+        boardRepository.increaseViews(board);
+    }
+
+    @Transactional
+    public void increaseLikes(Board board) {
+        boardRepository.increaseLikes(board);
+    }
+
+    @Transactional
+    public void decreaseLikes(Board board) {
+        boardRepository.decreaseLikes(board);
+    }
 }

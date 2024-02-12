@@ -76,7 +76,7 @@ public class MemberController {
 //                .password(form.getPassword1())
                 .password(encodedPwd)
                 .email(form.getEmail())
-                .role(Role.USER.name())
+                .role(Role.USER)
                 .build();
 
         memberService.join(member);
