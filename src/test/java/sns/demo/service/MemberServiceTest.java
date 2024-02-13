@@ -11,6 +11,7 @@ import sns.demo.domain.repository.MemberRepository;
 import sns.demo.web.service.MemberService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -34,28 +35,24 @@ class MemberServiceTest {
         assertEquals(member, memberRepository.findByUsername(username).get());
     }
 
-//    @Test
-//    public void validDuplMember() {
-//        Member member1 = new Member();
-//        member1.setUsername("신제우");
-//        member1.setPassword("1219");
-//
-//        Member member2 = new Member();
-//        member2.setUsername("신제우");
-//        member2.setPassword("1219");
-//
-//        assertThrows(IllegalStateException.class, () -> {
-//            memberServiceImpl.join(member1);
-//            memberServiceImpl.join(member2);
-//        });
-//    }
+    /**
+     * 유저네임 중복 테스트
+     */
+    @Test
+    public void validDuplMember() {
+        Member member1 = Member.builder()
+                        .username("신제우")
+                                .password("1219")
+                                        .build();
 
+        Member member2 = Member.builder()
+                        .username("신제우")
+                                .password("1219")
+                                        .build();
 
-//    @Test
-//    void findOne() {
-//    }
-//
-//    @Test
-//    void findMembers() {
-//    }
+        assertThrows(IllegalStateException.class, () -> {
+            memberService.join(member1);
+            memberService.join(member2);
+        });
+    }
 }

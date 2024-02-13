@@ -23,7 +23,7 @@ public class BoardRepository {
     }
 
     public List<Board> findAll() {
-        return em.createQuery("select b from Board b", Board.class).getResultList();
+        return em.createQuery("select b from Board b order by b.likeCount desc, b.viewCount desc", Board.class).getResultList();
     }
 
     public void delete(Board board) {
