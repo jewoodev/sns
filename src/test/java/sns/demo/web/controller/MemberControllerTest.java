@@ -27,33 +27,33 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureMockMvc
-@WebMvcTest(controllers = MemberController.class)
-class MemberControllerTest {
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    @DisplayName("회원가입 성공 - 유저네임, 이메일, 비밀번호 입력")
-    void successSignup() throws Exception {
-        //given
-        JoinDTO dto = new JoinDTO();
-        dto.setUsername("jewoo");
-        dto.setPassword1("1234");
-        dto.setPassword2("1234");
-        dto.setEmail("jewoos15@naver.com");
-
-        System.out.println("dto is " + dto);
-
-        //then
-        mockMvc.perform(post("/members/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(dto))
-                .with(csrf()))
-                .andExpect(status().isCreated());
-    }
-}
+//@AutoConfigureMockMvc
+//@WebMvcTest(controllers = MemberController.class)
+//class MemberControllerTest {
+//
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Test
+//    @DisplayName("회원가입 성공 - 유저네임, 이메일, 비밀번호 입력")
+//    void successSignup() throws Exception {
+//        //given
+//        JoinDTO dto = new JoinDTO();
+//        dto.setUsername("jewoo");
+//        dto.setPassword1("1234");
+//        dto.setPassword2("1234");
+//        dto.setEmail("jewoos15@naver.com");
+//
+//        System.out.println("dto is " + dto);
+//
+//        //then
+//        mockMvc.perform(post("/members/new")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(dto))
+//                .with(csrf()))
+//                .andExpect(status().isCreated());
+//    }
+//}

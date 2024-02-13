@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import sns.demo.domain.entity.Member;
@@ -50,7 +51,7 @@ class MemberServiceTest {
                                 .password("1219")
                                         .build();
 
-        assertThrows(IllegalStateException.class, () -> {
+        assertThrows(DataIntegrityViolationException.class, () -> {
             memberService.join(member1);
             memberService.join(member2);
         });

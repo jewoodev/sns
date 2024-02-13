@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sns.demo.repository.SnsBoardRepositoryTestEntity" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-02-13T11:28:07" hostname="DESKTOP-QG9F5VA" time="0.109">
+  <properties/>
+  <testcase name="delete()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.002"/>
+  <testcase name="findAll()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.003"/>
+  <testcase name="findById()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.002"/>
+  <testcase name="save()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.1"/>
+  <system-out><![CDATA[2024-02-13T20:28:07.847+09:00  INFO 14060 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sns.demo.repository.SnsBoardRepositoryTestEntity]: SnsBoardRepositoryTestEntity does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-02-13T20:28:07.864+09:00  INFO 14060 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.repository.SnsBoardRepositoryTestEntity
+2024-02-13T20:28:07.896+09:00 DEBUG 14060 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        board
+        (content, created_date, like_count, member_id, modified_date, title, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (content, created_date, like_count, member_id, modified_date, title, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [맛집은 세상을 아름답게해]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2024-02-13T20:28:07.881076300]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [null]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:BIGINT) <- [null]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:TIMESTAMP) <- [2024-02-13T20:28:07.881076300]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) <- [제우식당]
+2024-02-13T20:28:07.898+09:00 TRACE 14060 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [null]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h3 th:text="${board.getTitle()}">게시물 조회</h3>
+    </div>
+    <br>
+    <form th:action="@{/board/{id}/likes (id=${board.getId()})}" th:method="post">
+        <button type="submit">
+            <img th:src="${doLike} ? '/heart-fill.svg' : '/heart.svg'" alt="Favorite button" />
+        </button>
+    </form>
+    <div>
+        <span th:text="${board.getContent()}">게시물 내용</span>
+    </div>
+
+    <img th:each="image: ${boardImages}" th:src="|/images/${image.getFilename()}|" width="100%" height="auto"/>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button th:if="${username eq board.getMember().getUsername()}"
+                    class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='home.html'"
+                    th:onclick="|location.href='@{/}'|"
+                    type="button">수정하기</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='home.html'"
+                    th:onclick="|location.href='@{/}'|"
+                    type="button">돌아가기</button>
+        </div>
+    </div>
+
+
+
+    <div class="card my-4">
+        <h5 class="card-header">댓글</h5>
+        <div class="card-body">
+            <form th:action="@{/board/{id}/comments (id=${board.getId()})}" th:method="post" th:object="${commentDTO}">
+                <div class="form-group" style="margin-bottom: 10px;">
+<!--                    <input type="hidden" name="idx" th:value="*{idx}" />-->
+                    <label th:for="body" class="form-label" th:text="|사용자 : ${username}|">작성자</label>
+                    <textarea th:field="*{body}" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">댓글 남기기</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table" th:each="comment : ${comments}">
+        <thead class="thead-light">
+            <tr>
+                <th>작성자</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${comment.getMember().getUsername()}">유저네임</td>
+                <td th:text="${comment.getBody()}">내용</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
