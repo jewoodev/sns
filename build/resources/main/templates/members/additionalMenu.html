@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>추가 메뉴</h2>
+    </div>
+
+    <p class="lead">게시물 기능</p>
+    <p>
+        <a class="btn btn-lg btn-secondary" href="/members/boards">내 게시물 조회</a>
+    </p>
+    <p class="lead">댓글 기능</p>
+    <p>
+        <a class="btn btn-lg btn-secondary" href="/members/comments">내 댓글 조회</a>
+    </p>
+    <p class="lead">회원 삭제 기능</p>
+    <p>
+        <form th:action="@{/members/delete}" th:method="delete">
+            <button class="btn-secondary btn-lg" type="submit" >계정 삭제</button>
+        </form>
+    </p>
+    <div th:replace="~{fragments/footer :: footer}" />
+</div> <!-- /container -->
+</body>
+</html>

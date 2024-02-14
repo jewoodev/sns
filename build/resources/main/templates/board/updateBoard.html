@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>게시글 작성하기</h3>
+    </div>
+
+    <form th:action th:object="${dto}" method="post" enctype="multipart/form-data">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+               th:text="${err}">글로벌 오류 메세지</p>
+        </div>
+
+        <div>
+            <label th:for="writer" class="form-label">제목</label>
+            <input type="text" th:field="*{title}" class="form-control"
+                   placeholder="제목을 입력하세요" th:class="${#fields.hasErrors('title')}? 'form-control field-error' : 'form-control'">
+            <div class="field-error" th:errors="*{title}" />
+        </div>
+        <div>
+            <label th:for="content" class="form-label">내용</label>
+            <textarea rows="3" style="height: 200px;" th:field="*{content}" class="form-control"
+                      placeholder="내용을 입력하세요" th:class="${#fields.hasErrors('content')}? 'form-control field-error' : 'form-control'"></textarea>
+        </div>
+
+        <br>
+
+        <div>
+            <label th:for="images" class="form-label">이미지</label>
+            <input type="file" multiple="multiple" th:field="*{boardImages}" id="formFile" class="form-control">
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="w-100 btn btn-primary btn-lg">저장하기</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='loginForm.html'"
+                        th:onclick="|location.href='@{/board/{id} (id=${id})}'|"
+                        type="button">취소</button>
+            </div>
+        </div>
+    </form>
+    <br/>
+    <div th:replace="~{fragments/footer :: footer}" />
+</div>
+</html>
