@@ -51,7 +51,7 @@ public class LoginController {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         model.addAttribute("loginForm", form);
-        return "/login/loginForm";
+        return "login/loginForm";
     }
 
 

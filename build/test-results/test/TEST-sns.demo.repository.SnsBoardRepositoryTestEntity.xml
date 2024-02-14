@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sns.demo.repository.SnsBoardRepositoryTestEntity" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-14T08:07:37" hostname="DESKTOP-QG9F5VA" time="0.67">
+<testsuite name="sns.demo.repository.SnsBoardRepositoryTestEntity" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-14T08:39:37" hostname="DESKTOP-QG9F5VA" time="0.531">
   <properties/>
-  <testcase name="save()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.67"/>
-  <system-out><![CDATA[17:07:33.095 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [sns.demo.repository.SnsBoardRepositoryTestEntity]: SnsBoardRepositoryTestEntity does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:07:33.180 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.repository.SnsBoardRepositoryTestEntity
+  <testcase name="save()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.531"/>
+  <system-out><![CDATA[17:39:31.031 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [sns.demo.repository.SnsBoardRepositoryTestEntity]: SnsBoardRepositoryTestEntity does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:39:31.111 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.repository.SnsBoardRepositoryTestEntity
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,24 +13,266 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-02-14T17:07:33.555+09:00  INFO 15700 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Starting SnsBoardRepositoryTestEntity using Java 17.0.8 with PID 15700 (started by admin in C:\develop_dir\demo)
-2024-02-14T17:07:33.556+09:00  INFO 15700 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : No active profile set, falling back to 1 default profile: "default"
-2024-02-14T17:07:34.282+09:00  INFO 15700 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-02-14T17:07:34.343+09:00  INFO 15700 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interface.
-2024-02-14T17:07:34.842+09:00  INFO 15700 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-02-14T17:07:34.898+09:00  INFO 15700 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-02-14T17:07:34.937+09:00  INFO 15700 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-02-14T17:07:35.178+09:00  INFO 15700 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-02-14T17:07:35.206+09:00  INFO 15700 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-02-14T17:07:35.542+09:00  INFO 15700 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a58e0e9
-2024-02-14T17:07:35.542+09:00  INFO 15700 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-02-14T17:07:35.613+09:00  WARN 15700 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-02-14T17:07:36.469+09:00  INFO 15700 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-02-14T17:07:36.471+09:00  INFO 15700 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-02-14T17:07:37.024+09:00  WARN 15700 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-02-14T17:07:37.461+09:00  INFO 15700 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3e3c6323, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f404bc6, org.springframework.security.web.context.SecurityContextHolderFilter@365eaef, org.springframework.security.web.header.HeaderWriterFilter@7672dd7a, org.springframework.web.filter.CorsFilter@77d0a492, org.springframework.security.web.authentication.logout.LogoutFilter@7bf3bf2e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@15b882a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@9e2b199, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7441edeb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2f46bc25, org.springframework.security.web.access.ExceptionTranslationFilter@3fe7c87c, org.springframework.security.web.access.intercept.AuthorizationFilter@4d6f951a]
-2024-02-14T17:07:37.872+09:00  INFO 15700 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Started SnsBoardRepositoryTestEntity in 4.556 seconds (process running for 5.654)
-2024-02-14T17:07:38.445+09:00 DEBUG 15700 --- [    Test worker] org.hibernate.SQL                        : 
+2024-02-14T17:39:31.473+09:00  INFO 10448 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Starting SnsBoardRepositoryTestEntity using Java 17.0.8 with PID 10448 (started by admin in C:\develop_dir\demo)
+2024-02-14T17:39:31.474+09:00  INFO 10448 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : No active profile set, falling back to 1 default profile: "default"
+2024-02-14T17:39:32.201+09:00  INFO 10448 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-14T17:39:32.254+09:00  INFO 10448 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 1 JPA repository interface.
+2024-02-14T17:39:32.738+09:00  INFO 10448 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-14T17:39:32.818+09:00  INFO 10448 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-14T17:39:32.862+09:00  INFO 10448 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-14T17:39:33.137+09:00  INFO 10448 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-14T17:39:33.161+09:00  INFO 10448 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-14T17:39:33.495+09:00  INFO 10448 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60ab895f
+2024-02-14T17:39:33.497+09:00  INFO 10448 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-14T17:39:33.561+09:00  WARN 10448 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-14T17:39:34.432+09:00  INFO 10448 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-14T17:39:34.446+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table board 
+       drop 
+       foreign key FKsds8ox89wwf6aihinar49rmfy
+Hibernate: 
+    alter table board 
+       drop 
+       foreign key FKsds8ox89wwf6aihinar49rmfy
+2024-02-14T17:39:34.504+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table comment 
+       drop 
+       foreign key FKlij9oor1nav89jeat35s6kbp1
+Hibernate: 
+    alter table comment 
+       drop 
+       foreign key FKlij9oor1nav89jeat35s6kbp1
+2024-02-14T17:39:34.552+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table comment 
+       drop 
+       foreign key FKmrrrpi513ssu63i2783jyiv9m
+Hibernate: 
+    alter table comment 
+       drop 
+       foreign key FKmrrrpi513ssu63i2783jyiv9m
+2024-02-14T17:39:34.602+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table file 
+       drop 
+       foreign key FKhxmhyint41lp428u8yxcy4alx
+Hibernate: 
+    alter table file 
+       drop 
+       foreign key FKhxmhyint41lp428u8yxcy4alx
+2024-02-14T17:39:34.652+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table likes 
+       drop 
+       foreign key FK5cq36196j3ww17d7r95qdm4td
+Hibernate: 
+    alter table likes 
+       drop 
+       foreign key FK5cq36196j3ww17d7r95qdm4td
+2024-02-14T17:39:34.694+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table likes 
+       drop 
+       foreign key FKa4vkf1skcfu5r6o5gfb5jf295
+Hibernate: 
+    alter table likes 
+       drop 
+       foreign key FKa4vkf1skcfu5r6o5gfb5jf295
+2024-02-14T17:39:34.742+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists board
+Hibernate: 
+    drop table if exists board
+2024-02-14T17:39:34.778+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists comment
+Hibernate: 
+    drop table if exists comment
+2024-02-14T17:39:34.809+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists file
+Hibernate: 
+    drop table if exists file
+2024-02-14T17:39:34.842+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists likes
+Hibernate: 
+    drop table if exists likes
+2024-02-14T17:39:34.872+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists member
+Hibernate: 
+    drop table if exists member
+2024-02-14T17:39:34.910+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    create table board (
+        board_id bigint not null auto_increment,
+        created_date datetime(6),
+        like_count bigint default 0,
+        member_id bigint,
+        modified_date datetime(6),
+        view_count bigint default 0,
+        title varchar(50) not null,
+        content varchar(500) not null,
+        primary key (board_id)
+    ) engine=InnoDB
+Hibernate: 
+    create table board (
+        board_id bigint not null auto_increment,
+        created_date datetime(6),
+        like_count bigint default 0,
+        member_id bigint,
+        modified_date datetime(6),
+        view_count bigint default 0,
+        title varchar(50) not null,
+        content varchar(500) not null,
+        primary key (board_id)
+    ) engine=InnoDB
+2024-02-14T17:39:34.953+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    create table comment (
+        board_id bigint,
+        created_date datetime(6),
+        id bigint not null auto_increment,
+        member_id bigint,
+        modified_date datetime(6),
+        body varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table comment (
+        board_id bigint,
+        created_date datetime(6),
+        id bigint not null auto_increment,
+        member_id bigint,
+        modified_date datetime(6),
+        body varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+2024-02-14T17:39:34.996+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    create table file (
+        board_id bigint,
+        created_date datetime(6),
+        file_id bigint not null auto_increment,
+        modified_date datetime(6),
+        filename varchar(255),
+        filepath varchar(255),
+        primary key (file_id)
+    ) engine=InnoDB
+Hibernate: 
+    create table file (
+        board_id bigint,
+        created_date datetime(6),
+        file_id bigint not null auto_increment,
+        modified_date datetime(6),
+        filename varchar(255),
+        filepath varchar(255),
+        primary key (file_id)
+    ) engine=InnoDB
+2024-02-14T17:39:35.035+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    create table likes (
+        do_like bit not null,
+        board_id bigint,
+        id bigint not null auto_increment,
+        member_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table likes (
+        do_like bit not null,
+        board_id bigint,
+        id bigint not null auto_increment,
+        member_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2024-02-14T17:39:35.084+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    create table member (
+        created_date datetime(6),
+        member_id bigint not null auto_increment,
+        modified_date datetime(6),
+        email varchar(255),
+        password varchar(255),
+        username varchar(255),
+        role enum ('USER','ADMIN'),
+        primary key (member_id)
+    ) engine=InnoDB
+Hibernate: 
+    create table member (
+        created_date datetime(6),
+        member_id bigint not null auto_increment,
+        modified_date datetime(6),
+        email varchar(255),
+        password varchar(255),
+        username varchar(255),
+        role enum ('USER','ADMIN'),
+        primary key (member_id)
+    ) engine=InnoDB
+2024-02-14T17:39:35.132+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
+Hibernate: 
+    alter table member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
+2024-02-14T17:39:35.180+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table member 
+       add constraint UK_gc3jmn7c2abyo3wf6syln5t2i unique (username)
+Hibernate: 
+    alter table member 
+       add constraint UK_gc3jmn7c2abyo3wf6syln5t2i unique (username)
+2024-02-14T17:39:35.220+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table board 
+       add constraint FKsds8ox89wwf6aihinar49rmfy 
+       foreign key (member_id) 
+       references member (member_id)
+Hibernate: 
+    alter table board 
+       add constraint FKsds8ox89wwf6aihinar49rmfy 
+       foreign key (member_id) 
+       references member (member_id)
+2024-02-14T17:39:35.298+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table comment 
+       add constraint FKlij9oor1nav89jeat35s6kbp1 
+       foreign key (board_id) 
+       references board (board_id)
+Hibernate: 
+    alter table comment 
+       add constraint FKlij9oor1nav89jeat35s6kbp1 
+       foreign key (board_id) 
+       references board (board_id)
+2024-02-14T17:39:35.388+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member (member_id)
+Hibernate: 
+    alter table comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member (member_id)
+2024-02-14T17:39:35.474+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table file 
+       add constraint FKhxmhyint41lp428u8yxcy4alx 
+       foreign key (board_id) 
+       references board (board_id)
+Hibernate: 
+    alter table file 
+       add constraint FKhxmhyint41lp428u8yxcy4alx 
+       foreign key (board_id) 
+       references board (board_id)
+2024-02-14T17:39:35.548+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table likes 
+       add constraint FK5cq36196j3ww17d7r95qdm4td 
+       foreign key (board_id) 
+       references board (board_id)
+Hibernate: 
+    alter table likes 
+       add constraint FK5cq36196j3ww17d7r95qdm4td 
+       foreign key (board_id) 
+       references board (board_id)
+2024-02-14T17:39:35.620+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table likes 
+       add constraint FKa4vkf1skcfu5r6o5gfb5jf295 
+       foreign key (member_id) 
+       references member (member_id)
+Hibernate: 
+    alter table likes 
+       add constraint FKa4vkf1skcfu5r6o5gfb5jf295 
+       foreign key (member_id) 
+       references member (member_id)
+2024-02-14T17:39:35.719+09:00  INFO 10448 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-14T17:39:36.247+09:00  WARN 10448 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-14T17:39:36.676+09:00  INFO 10448 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@301b89e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f3abe67, org.springframework.security.web.context.SecurityContextHolderFilter@270a3cef, org.springframework.security.web.header.HeaderWriterFilter@35ffe3ac, org.springframework.web.filter.CorsFilter@64f1e9f8, org.springframework.security.web.authentication.logout.LogoutFilter@5472c27a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3956df0a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f7e5e11, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bb996e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d3929ba, org.springframework.security.web.access.ExceptionTranslationFilter@1d12eff1, org.springframework.security.web.access.intercept.AuthorizationFilter@454f6cc5]
+2024-02-14T17:39:37.119+09:00  INFO 10448 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Started SnsBoardRepositoryTestEntity in 5.862 seconds (process running for 6.861)
+2024-02-14T17:39:37.582+09:00 DEBUG 10448 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         board
@@ -44,13 +286,13 @@ Hibernate:
         (content, created_date, like_count, member_id, modified_date, title, view_count) 
     values
         (?, ?, ?, ?, ?, ?, ?)
-2024-02-14T17:07:38.452+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [맛집은 세상을 아름답게해]
-2024-02-14T17:07:38.453+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2024-02-14T17:07:38.418726200]
-2024-02-14T17:07:38.454+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [null]
-2024-02-14T17:07:38.455+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:BIGINT) <- [null]
-2024-02-14T17:07:38.455+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:TIMESTAMP) <- [2024-02-14T17:07:38.418726200]
-2024-02-14T17:07:38.455+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) <- [제우식당]
-2024-02-14T17:07:38.455+09:00 TRACE 15700 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [null]
+2024-02-14T17:39:37.591+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [맛집은 세상을 아름답게해]
+2024-02-14T17:39:37.591+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2024-02-14T17:39:37.554368500]
+2024-02-14T17:39:37.592+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [null]
+2024-02-14T17:39:37.592+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:BIGINT) <- [null]
+2024-02-14T17:39:37.592+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:TIMESTAMP) <- [2024-02-14T17:39:37.554368500]
+2024-02-14T17:39:37.592+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) <- [제우식당]
+2024-02-14T17:39:37.592+09:00 TRACE 10448 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [null]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

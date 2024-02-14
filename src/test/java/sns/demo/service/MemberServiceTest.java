@@ -21,7 +21,9 @@ class MemberServiceTest {
 
     @Autowired
     MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     void join() {
@@ -29,7 +31,6 @@ class MemberServiceTest {
                 .username("신제우")
                 .password("1234")
                         .build();
-        member.updatePassword("4567");
 
         String username = memberService.join(member);
 
