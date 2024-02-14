@@ -71,19 +71,11 @@
 
 # 시연 영상
 
-### 회원가입, 로그인 기능
+### [회원가입, 로그인 기능]((https://youtu.be/5LsMbG4yqh0?t=0s))
 
-[![Video Label](http://img.youtube.com/vi/5LsMbG4yqh0/0.jpg)](https://youtu.be/5LsMbG4yqh0)
+### [글 작성, 수정, 삭제, 기능](https://youtu.be/xn4hO0pD64I)
 
-### 글 작성, 수정, 삭제, 기능
-
-[![Video Label](http://img.youtube.com/vi/n4hO0pD64I/0.jpg)](https://youtu.be/xn4hO0pD64I)
-
-### 자신이 적은 글, 댓글, 조회, 계정 삭제 기능
-
-[![Video Label](http://img.youtube.com/vi/frx8Wm11BDY/0.jpg)](https://youtu.be/frx8Wm11BDY)
-
-
+### [자신이 적은 글, 댓글, 조회, 계정 삭제 기능](frx8Wm11BDY)
 
 # 웹 페이지 링크
 
