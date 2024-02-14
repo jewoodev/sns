@@ -56,7 +56,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
-                                .requestMatchers("/", "/login/**", "/error/**",
+                                .requestMatchers("/", "/login", "/error/**",
                                         "/bootstrap.min.css", "/style.css", "/favicon/**",
                                         "/members/new").permitAll()
                                 .requestMatchers("/login/home").hasAuthority(Role.USER.name())

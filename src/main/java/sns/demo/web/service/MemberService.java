@@ -50,21 +50,16 @@ public class MemberService {
         memberRepository.updatePassword(memberParam.getId(), newPassword);
     }
 
-//    /**
-//     * 로그인
-//     * @return null이면 로그인 실패
-//     */
-//    public Member login(String username, String password) {
-//        return memberRepository.findByUsername(username)
-//                .filter(m -> m.getPassword().equals(password))
-//                .orElse(null);
-//    }
-
     public void existsByEmail(String email) {
         memberRepository.existsByEmail(email);
     }
 
     public void existByUsername(String username) {
         memberRepository.existsByUsername(username);
+    }
+
+    @Transactional
+    public void delete(Member member) {
+        memberRepository.delete(member.getId());
     }
 }

@@ -15,6 +15,10 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
   messages:
     basename: message, errors
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 
 logging:
   level:

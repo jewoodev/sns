@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>내 게시물 조회</h3>
+    </div>
+    <br>
+    <ul th:each="board : ${boards}">
+        <li><a th:href="@{/board/{boardId} (boardId=${board.getId()})}" th:text="${board.getTitle()}">제목</a></li>
+    </ul>
+        <div th:replace="~{fragments/footer :: footer}" />
+    </div> <!-- /container -->
+</body>
+</html>

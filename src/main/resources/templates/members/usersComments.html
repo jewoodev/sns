@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>내 댓글 조회</h3>
+    </div>
+    <br>
+    <ul th:each="comment : ${comments}">
+        <li><a th:href="@{/board/{boardId} (boardId=${comment.getBoard().getId()})}" th:text="${comment.getBody()}">제목</a></li>
+    </ul>
+    <div th:replace="~{fragments/footer :: footer}" />
+</div> <!-- /container -->
+</body>
+</html>

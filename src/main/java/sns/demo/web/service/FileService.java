@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Service
 public class FileService {
 
@@ -27,15 +26,16 @@ public class FileService {
         return fileRepository.save(file);
     }
 
-    @Transactional
     public List<File> uploadFiles(List<MultipartFile> multipartFiles) throws IOException {
         return fileRepository.storeFiles(multipartFiles);
     }
 
+    @Transactional(readOnly = true)
     public Optional<File> findByFileName(String filename) {
         return fileRepository.findByFileName(filename);
     }
 
+    @Transactional(readOnly = true)
     public List<File> findAllByBoardId(Long boardId) {
         return fileRepository.findAllByBoardId(boardId);
     }

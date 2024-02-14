@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import sns.demo.domain.dto.board.BoardRequestDTO;
 
 import java.util.List;
 
@@ -29,10 +30,10 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<File> boardImages;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     @ColumnDefault("0")
@@ -41,9 +42,13 @@ public class Board extends BaseTimeEntity {
     @ColumnDefault("0")
     private Long likeCount;
 
-    public void update(String title, String content) {
-        this.title = title;
-        this.content = content;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Likes> likes;
+
+    public void update(BoardRequestDTO board, List<File> boardImages) {
+        this.title = board.getTitle();
+        this.content = board.getContent();
+        this.boardImages = boardImages;
     }
 
     public void increaseViews() {

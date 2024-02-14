@@ -1,9 +1,11 @@
 package sns.demo.web.controller;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +14,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sns.demo.domain.dto.CustomUserDetails;
+import sns.demo.domain.entity.Board;
+import sns.demo.domain.entity.Comment;
 import sns.demo.domain.entity.Member;
 import sns.demo.domain.Role;
 import sns.demo.domain.dto.JoinDTO;
 import sns.demo.domain.dto.UpdatePasswordDTO;
+import sns.demo.web.service.BoardService;
+import sns.demo.web.service.CommentService;
 import sns.demo.web.service.MemberService;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 @Slf4j
 @Controller
@@ -25,6 +34,8 @@ import sns.demo.web.service.MemberService;
 public class MemberController {
 
     private final MemberService memberService;
+    private final BoardService boardService;
+    private final CommentService commentService;
     private final BCryptPasswordEncoder passwordEncoder;
 
 
@@ -38,8 +49,10 @@ public class MemberController {
     public String createMember(@Validated @ModelAttribute JoinDTO form,
                                BindingResult result, Errors errors) {
 
+        System.out.println("dto is " + form);
+
         if (result.hasErrors()) {
-            log.info("errors={}", result);
+            log.info("errors={}", errors);
             return "members/createMemberForm";
         }
 
@@ -92,8 +105,8 @@ public class MemberController {
 
     @PostMapping("/update/password")
     public String updateMemberPassword(@Validated @ModelAttribute UpdatePasswordDTO form,
-                                       BindingResult result, Authentication a) {
-        CustomUserDetails userDetails = (CustomUserDetails) a.getPrincipal();
+                                       BindingResult result, Authentication authentication) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         log.info("principal = {}", userDetails);
 
         if (result.hasErrors()) {
@@ -117,5 +130,40 @@ public class MemberController {
         memberService.updateMemberPassword(userDetails.getMember(), newPassword);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/menu")
+    public String menu() {
+        return "members/additionalMenu";
+    }
+
+    @GetMapping("/boards")
+    public String referMembersBoards(Authentication authentication, Model model) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Member loginMember = userDetails.getMember();
+
+        List<Board> boards = boardService.findByMember(loginMember);
+        model.addAttribute("boards", boards);
+
+        return "board/usersBoards";
+    }
+
+    @GetMapping("/comments")
+    public String referMembersComments(Authentication authentication, Model model) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Member loginMember = userDetails.getMember();
+
+        List<Comment> comments = commentService.findByMember(loginMember);
+        model.addAttribute("comments", comments);
+
+        return "members/usersComments";
+    }
+
+    @DeleteMapping("/delete")
+    public String delete(Authentication authentication) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        memberService.delete(userDetails.getMember());
+
+        return "redirect:/logout";
     }
 }

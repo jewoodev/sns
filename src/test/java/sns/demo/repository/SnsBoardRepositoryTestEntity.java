@@ -44,15 +44,4 @@ class SnsBoardRepositoryTestEntity {
         assertThat(foundOne).isEqualTo(board);
     }
 
-    @Test
-    void findById() {
-    }
-
-    @Test
-    void findAll() {
-    }
-
-    @Test
-    void delete() {
-    }
 }

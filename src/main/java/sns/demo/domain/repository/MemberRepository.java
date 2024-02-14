@@ -70,4 +70,9 @@ public class MemberRepository {
         Member findMember = em.find(Member.class, id);
         findMember.updatePassword(newPassword);
     }
+
+    public void delete(Long id) {
+        Member member = em.find(Member.class, id);
+        em.remove(member);
+    }
 }
