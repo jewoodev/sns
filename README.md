@@ -71,7 +71,7 @@
 
 # 시연 영상
 
-### [회원가입, 로그인 기능]((https://youtu.be/5LsMbG4yqh0?t=0s))
+### [회원가입, 로그인 기능](https://youtu.be/5LsMbG4yqh0)
 
 ### [글 작성, 수정, 삭제, 기능](https://youtu.be/xn4hO0pD64I)
 
