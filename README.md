@@ -71,11 +71,13 @@
 
 # 시연 영상
 
-### [회원가입, 로그인 기능](https://youtu.be/5LsMbG4yqh0)
+각 기능 시연 영상을 링크를 타고 확인해보세요.
 
-### [글 작성, 수정, 삭제, 기능](https://youtu.be/xn4hO0pD64I)
+[회원가입, 로그인 기능](https://youtu.be/5LsMbG4yqh0)
 
-### [자신이 적은 글, 댓글, 조회, 계정 삭제 기능](frx8Wm11BDY)
+[글 작성, 수정, 삭제, 기능](https://youtu.be/xn4hO0pD64I)
+
+[자신이 적은 글, 댓글, 조회, 계정 삭제 기능](frx8Wm11BDY)
 
 # 웹 페이지 링크
 
