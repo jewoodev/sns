@@ -44,4 +44,4 @@ cloud:
       auto: false
 
 file:
-  dir: C:\develop_dir\demo\src\main\resources\images\
+  dir: /home/ec2-user/sns/src/main/resources/images
