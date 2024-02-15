@@ -22,6 +22,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> userData = memberRepository.findByUsername(username);
 
-        return userData.map(CustomUserDetails::new).orElse(null);
+        return userData.map(CustomUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 아이디입니다."));
     }
 }

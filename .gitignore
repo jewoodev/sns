@@ -3,6 +3,7 @@ HELP.md
 .gradle
 application.yml
 src/main/resources/images
+s3.yml
 
 #build/
 !gradle/wrapper/gradle-wrapper.jar

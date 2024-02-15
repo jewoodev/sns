@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.406s</div>
+<div class="counter">0.540s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">join()</td>
-<td class="success">0.339s</td>
+<td class="success">0.451s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">validDuplMember()</td>
-<td class="success">0.067s</td>
+<td class="success">0.089s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,9 +92,9 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2024-02-15T12:28:52.674+09:00  INFO 3000 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sns.demo.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-02-15T12:28:52.681+09:00  INFO 3000 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.service.MemberServiceTest
-2024-02-15T12:28:52.702+09:00 DEBUG 3000 --- [    Test worker] org.hibernate.SQL                        : 
+<pre>2024-02-16T00:53:04.606+09:00  INFO 15720 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sns.demo.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-02-16T00:53:04.618+09:00  INFO 15720 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.service.MemberServiceTest
+2024-02-16T00:53:04.648+09:00 DEBUG 15720 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
@@ -108,13 +108,13 @@ Hibernate:
         (created_date, email, modified_date, password, role, username) 
     values
         (?, ?, ?, ?, ?, ?)
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-15T12:28:52.700154100]
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-15T12:28:52.700154100]
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1219]
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
-2024-02-15T12:28:52.703+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
-2024-02-15T12:28:52.713+09:00 DEBUG 3000 --- [    Test worker] org.hibernate.SQL                        : 
+2024-02-16T00:53:04.656+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-16T00:53:04.648686100]
+2024-02-16T00:53:04.657+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
+2024-02-16T00:53:04.657+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-16T00:53:04.648686100]
+2024-02-16T00:53:04.657+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1219]
+2024-02-16T00:53:04.657+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
+2024-02-16T00:53:04.657+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
+2024-02-16T00:53:04.668+09:00 DEBUG 15720 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
@@ -128,15 +128,15 @@ Hibernate:
         (created_date, email, modified_date, password, role, username) 
     values
         (?, ?, ?, ?, ?, ?)
-2024-02-15T12:28:52.713+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-15T12:28:52.713608300]
-2024-02-15T12:28:52.714+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
-2024-02-15T12:28:52.714+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-15T12:28:52.713608300]
-2024-02-15T12:28:52.714+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1219]
-2024-02-15T12:28:52.714+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
-2024-02-15T12:28:52.714+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
-2024-02-15T12:28:52.728+09:00  WARN 3000 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1062, SQLState: 23000
-2024-02-15T12:28:52.728+09:00 ERROR 3000 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry '신제우' for key 'member.UK_gc3jmn7c2abyo3wf6syln5t2i'
-2024-02-15T12:28:52.762+09:00 DEBUG 3000 --- [    Test worker] org.hibernate.SQL                        : 
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-16T00:53:04.668935200]
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-16T00:53:04.668935200]
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1219]
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
+2024-02-16T00:53:04.668+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
+2024-02-16T00:53:04.687+09:00  WARN 15720 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1062, SQLState: 23000
+2024-02-16T00:53:04.687+09:00 ERROR 15720 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry '신제우' for key 'member.UK_gc3jmn7c2abyo3wf6syln5t2i'
+2024-02-16T00:53:04.727+09:00 DEBUG 15720 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
@@ -150,13 +150,13 @@ Hibernate:
         (created_date, email, modified_date, password, role, username) 
     values
         (?, ?, ?, ?, ?, ?)
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-15T12:28:52.762525500]
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-15T12:28:52.762525500]
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1234]
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
-2024-02-15T12:28:52.763+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
-2024-02-15T12:28:53.059+09:00 DEBUG 3000 --- [    Test worker] org.hibernate.SQL                        : 
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) &lt;- [2024-02-16T00:53:04.727518600]
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) &lt;- [null]
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) &lt;- [2024-02-16T00:53:04.727518600]
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) &lt;- [1234]
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:ENUM) &lt;- [null]
+2024-02-16T00:53:04.727+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) &lt;- [신제우]
+2024-02-16T00:53:05.132+09:00 DEBUG 15720 --- [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id,
         m1_0.created_date,
@@ -182,7 +182,7 @@ Hibernate:
         member m1_0 
     where
         m1_0.username=?
-2024-02-15T12:28:53.060+09:00 TRACE 3000 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) &lt;- [신제우]
+2024-02-16T00:53:05.134+09:00 TRACE 15720 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) &lt;- [신제우]
 </pre>
 </span>
 </div>
@@ -194,7 +194,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 2. 15. 오후 12:28:54</p>
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 2. 16. 오전 12:53:07</p>
 </div>
 </div>
 </body>

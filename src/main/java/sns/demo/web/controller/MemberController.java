@@ -59,7 +59,8 @@ public class MemberController {
         // 1. 비밀번호 확인 과정
         if (form.getPassword1() != null && form.getPassword2() != null
                 && !form.getPassword1().equals(form.getPassword2())) {
-            result.rejectValue("password2", "passwordIncorrect", "2개의 패스워드가 일치하지 않습니다.");
+            result.rejectValue("password2", "passwordIncorrect",
+                    "2개의 패스워드가 일치하지 않습니다.");
             return "members/createMemberForm";
         }
 
