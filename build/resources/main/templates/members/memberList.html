@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">게시글 수</th>
+        <th scope="col">삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.getId()}"></td>
+            <td th:text="${member.getUsername()}"></td>
+            <td th:text="${member.getBoardList().size()}"></td>
+            <td>
+                <form th:action="@{/admin/member/{id}/delete (id=${member.getId()})}" th:method="delete">
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit" >삭제하기</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div th:replace="~{fragments/footer :: footer}" />
+</body>
+</html>

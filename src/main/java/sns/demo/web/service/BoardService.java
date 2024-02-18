@@ -32,6 +32,7 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    @Transactional
     public void delete(Board board) {
         boardRepository.delete(board);
     }

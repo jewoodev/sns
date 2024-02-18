@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h3>내 게시물 조회</h3>
+    </div>
+    <br>
+    <table th:class="table" >
+        <thead>
+            <tr>
+                <th th:scope="col">제목</th>
+                <th th:scope="col">댓글 수</th>
+                <th th:scope="col">좋아요 수</th>
+                <th th:scope="col">조회 수</th>
+                <th th:scope="col">삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.getTitle()}"></td>
+                <td th:text="${board.getComments().size()}"></td>
+                <td th:text="${board.getLikeCount()}"></td>
+                <td th:text="${board.getViewCount()}"></td>
+                <td>
+                    <form th:action="@{/admin/board/{id}/delete (id=${board.getId()})}" th:method="delete">
+                        <button class="w-100 btn btn-secondary btn-lg" type="submit" >삭제하기</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div th:replace="~{fragments/footer :: footer}" />
+</div> <!-- /container -->
+</body>
+</html>

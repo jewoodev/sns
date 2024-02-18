@@ -59,7 +59,7 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/login", "/error/**",
                                         "/bootstrap.min.css", "/style.css", "/favicon/**",
                                         "/members/new").permitAll()
-                                .requestMatchers("/board/**").hasRole(Role.USER.name())
+                                .requestMatchers("/board/**").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated()
                 )

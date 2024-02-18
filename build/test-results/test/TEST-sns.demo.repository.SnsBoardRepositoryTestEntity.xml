@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sns.demo.repository.SnsBoardRepositoryTestEntity" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-18T07:12:45" hostname="DESKTOP-QG9F5VA" time="0.524">
+<testsuite name="sns.demo.repository.SnsBoardRepositoryTestEntity" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-18T10:04:37" hostname="DESKTOP-QG9F5VA" time="0.718">
   <properties/>
-  <testcase name="save()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.524"/>
-  <system-out><![CDATA[16:12:40.926 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [sns.demo.repository.SnsBoardRepositoryTestEntity]: SnsBoardRepositoryTestEntity does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:12:41.008 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.repository.SnsBoardRepositoryTestEntity
+  <testcase name="save()" classname="sns.demo.repository.SnsBoardRepositoryTestEntity" time="0.718"/>
+  <system-out><![CDATA[19:04:32.984 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [sns.demo.repository.SnsBoardRepositoryTestEntity]: SnsBoardRepositoryTestEntity does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:04:33.061 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.repository.SnsBoardRepositoryTestEntity
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,24 +13,24 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-02-18T16:12:41.374+09:00  INFO 8152 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Starting SnsBoardRepositoryTestEntity using Java 17.0.8 with PID 8152 (started by admin in C:\develop_dir\tasty_sns)
-2024-02-18T16:12:41.376+09:00  INFO 8152 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : No active profile set, falling back to 1 default profile: "default"
-2024-02-18T16:12:42.166+09:00  INFO 8152 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-02-18T16:12:42.217+09:00  INFO 8152 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 1 JPA repository interface.
-2024-02-18T16:12:42.679+09:00  INFO 8152 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-02-18T16:12:42.743+09:00  INFO 8152 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-02-18T16:12:42.789+09:00  INFO 8152 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-02-18T16:12:43.027+09:00  INFO 8152 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-02-18T16:12:43.054+09:00  INFO 8152 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-02-18T16:12:43.471+09:00  INFO 8152 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@283bb8b7
-2024-02-18T16:12:43.473+09:00  INFO 8152 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-02-18T16:12:43.530+09:00  WARN 8152 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-02-18T16:12:44.344+09:00  INFO 8152 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-02-18T16:12:44.347+09:00  INFO 8152 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-02-18T16:12:44.894+09:00  WARN 8152 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-02-18T16:12:45.272+09:00  INFO 8152 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f4d9c7f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6dcb4f30, org.springframework.security.web.context.SecurityContextHolderFilter@5834fd3f, org.springframework.security.web.header.HeaderWriterFilter@9e2b199, org.springframework.web.filter.CorsFilter@77f66138, org.springframework.security.web.authentication.logout.LogoutFilter@47a72c32, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@77d0a492, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f13720f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1df60140, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7271320c, org.springframework.security.web.access.ExceptionTranslationFilter@59d6a4d1, org.springframework.security.web.access.intercept.AuthorizationFilter@6f404bc6]
-2024-02-18T16:12:45.647+09:00  INFO 8152 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Started SnsBoardRepositoryTestEntity in 4.493 seconds (process running for 5.501)
-2024-02-18T16:12:46.071+09:00 DEBUG 8152 --- [    Test worker] org.hibernate.SQL                        : 
+2024-02-18T19:04:33.416+09:00  INFO 16236 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Starting SnsBoardRepositoryTestEntity using Java 17.0.8 with PID 16236 (started by admin in C:\develop_dir\tasty_sns)
+2024-02-18T19:04:33.417+09:00  INFO 16236 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : No active profile set, falling back to 1 default profile: "default"
+2024-02-18T19:04:34.171+09:00  INFO 16236 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-18T19:04:34.224+09:00  INFO 16236 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 1 JPA repository interface.
+2024-02-18T19:04:34.708+09:00  INFO 16236 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-18T19:04:34.773+09:00  INFO 16236 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-18T19:04:34.812+09:00  INFO 16236 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-18T19:04:35.051+09:00  INFO 16236 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-18T19:04:35.071+09:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-18T19:04:35.494+09:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25e95af1
+2024-02-18T19:04:35.495+09:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-18T19:04:35.543+09:00  WARN 16236 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-18T19:04:36.406+09:00  INFO 16236 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-18T19:04:36.408+09:00  INFO 16236 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-18T19:04:36.948+09:00  WARN 16236 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-18T19:04:37.372+09:00  INFO 16236 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6dcb4f30, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77f66138, org.springframework.security.web.context.SecurityContextHolderFilter@4446e1d9, org.springframework.security.web.header.HeaderWriterFilter@7441edeb, org.springframework.web.filter.CorsFilter@7271320c, org.springframework.security.web.authentication.logout.LogoutFilter@112f8f8f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2f46bc25, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1df60140, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62d4dac4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12ce659, org.springframework.security.web.access.ExceptionTranslationFilter@5b476930, org.springframework.security.web.access.intercept.AuthorizationFilter@77d0a492]
+2024-02-18T19:04:37.917+09:00  INFO 16236 --- [    Test worker] s.d.r.SnsBoardRepositoryTestEntity       : Started SnsBoardRepositoryTestEntity in 4.718 seconds (process running for 5.723)
+2024-02-18T19:04:38.539+09:00 DEBUG 16236 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         board
@@ -44,13 +44,13 @@ Hibernate:
         (content, created_date, like_count, member_id, modified_date, title, view_count) 
     values
         (?, ?, ?, ?, ?, ?, ?)
-2024-02-18T16:12:46.079+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [맛집은 세상을 아름답게해]
-2024-02-18T16:12:46.079+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2024-02-18T16:12:46.046596100]
-2024-02-18T16:12:46.080+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [null]
-2024-02-18T16:12:46.080+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:BIGINT) <- [null]
-2024-02-18T16:12:46.080+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:TIMESTAMP) <- [2024-02-18T16:12:46.046596100]
-2024-02-18T16:12:46.081+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) <- [제우식당]
-2024-02-18T16:12:46.081+09:00 TRACE 8152 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [null]
+2024-02-18T19:04:38.548+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [맛집은 세상을 아름답게해]
+2024-02-18T19:04:38.549+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2024-02-18T19:04:38.508508]
+2024-02-18T19:04:38.549+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [null]
+2024-02-18T19:04:38.549+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (4:BIGINT) <- [null]
+2024-02-18T19:04:38.550+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (5:TIMESTAMP) <- [2024-02-18T19:04:38.508508]
+2024-02-18T19:04:38.550+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (6:VARCHAR) <- [제우식당]
+2024-02-18T19:04:38.550+09:00 TRACE 16236 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [null]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

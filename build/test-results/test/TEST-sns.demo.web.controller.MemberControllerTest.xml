@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sns.demo.web.controller.MemberControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-18T07:12:47" hostname="DESKTOP-QG9F5VA" time="0.215">
+<testsuite name="sns.demo.web.controller.MemberControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-18T10:04:40" hostname="DESKTOP-QG9F5VA" time="0.235">
   <properties/>
-  <testcase name="회원가입 성공 - 유저네임, 이메일, 비밀번호 입력" classname="sns.demo.web.controller.MemberControllerTest" time="0.215"/>
-  <system-out><![CDATA[2024-02-18T16:12:46.572+09:00  INFO 8152 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sns.demo.web.controller.MemberControllerTest]: MemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-02-18T16:12:46.599+09:00  INFO 8152 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.web.controller.MemberControllerTest
+  <testcase name="회원가입 성공 - 유저네임, 이메일, 비밀번호 입력" classname="sns.demo.web.controller.MemberControllerTest" time="0.235"/>
+  <system-out><![CDATA[2024-02-18T19:04:39.243+09:00  INFO 16236 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sns.demo.web.controller.MemberControllerTest]: MemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-02-18T19:04:39.272+09:00  INFO 16236 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sns.demo.DemoApplication for test class sns.demo.web.controller.MemberControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,23 +13,23 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-02-18T16:12:46.621+09:00  INFO 8152 --- [    Test worker] s.d.web.controller.MemberControllerTest  : Starting MemberControllerTest using Java 17.0.8 with PID 8152 (started by admin in C:\develop_dir\tasty_sns)
-2024-02-18T16:12:46.622+09:00  INFO 8152 --- [    Test worker] s.d.web.controller.MemberControllerTest  : No active profile set, falling back to 1 default profile: "default"
-2024-02-18T16:12:47.311+09:00  WARN 8152 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+2024-02-18T19:04:39.291+09:00  INFO 16236 --- [    Test worker] s.d.web.controller.MemberControllerTest  : Starting MemberControllerTest using Java 17.0.8 with PID 16236 (started by admin in C:\develop_dir\tasty_sns)
+2024-02-18T19:04:39.291+09:00  INFO 16236 --- [    Test worker] s.d.web.controller.MemberControllerTest  : No active profile set, falling back to 1 default profile: "default"
+2024-02-18T19:04:40.035+09:00  WARN 16236 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: d229b4d9-0803-4bde-a3c0-1fe625697deb
+Using generated security password: 59d7915a-9206-4611-99c0-cd4d08748a9d
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2024-02-18T16:12:47.337+09:00  INFO 8152 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f4b52fa, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3468faa5, org.springframework.security.web.context.SecurityContextHolderFilter@4ccfd904, org.springframework.security.web.header.HeaderWriterFilter@3d7fc4b3, org.springframework.web.filter.CorsFilter@7308c29a, org.springframework.security.web.csrf.CsrfFilter@492b12e5, org.springframework.security.web.authentication.logout.LogoutFilter@6f215ff3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5248688c, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@47609e3d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@10c88d11, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5a372288, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5de25642, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@479885d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75f1c170, org.springframework.security.web.access.ExceptionTranslationFilter@20ff27a4, org.springframework.security.web.access.intercept.AuthorizationFilter@3d63becf]
-2024-02-18T16:12:47.388+09:00  INFO 8152 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-02-18T16:12:47.389+09:00  INFO 8152 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-02-18T16:12:47.390+09:00  INFO 8152 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2024-02-18T16:12:47.407+09:00  INFO 8152 --- [    Test worker] s.d.web.controller.MemberControllerTest  : Started MemberControllerTest in 0.806 seconds (process running for 7.261)
-2024-02-18T16:12:47.459+09:00  INFO 8152 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : REQUEST [89460b81-95cb-43d9-831e-b0ee3dd69699][/members/new][sns.demo.web.controller.MemberController#createMember(JoinDTO, BindingResult, Errors)]
+2024-02-18T19:04:40.067+09:00  INFO 16236 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7308c29a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10c88d11, org.springframework.security.web.context.SecurityContextHolderFilter@479885d, org.springframework.security.web.header.HeaderWriterFilter@5de25642, org.springframework.web.filter.CorsFilter@75f1c170, org.springframework.security.web.csrf.CsrfFilter@3d7fc4b3, org.springframework.security.web.authentication.logout.LogoutFilter@3d63becf, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a7c82e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@3aca7082, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@63fa0b9, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3468faa5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47609e3d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7555782c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3316aef6, org.springframework.security.web.access.ExceptionTranslationFilter@4ccfd904, org.springframework.security.web.access.intercept.AuthorizationFilter@37736bf1]
+2024-02-18T19:04:40.126+09:00  INFO 16236 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-02-18T19:04:40.126+09:00  INFO 16236 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-02-18T19:04:40.128+09:00  INFO 16236 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-02-18T19:04:40.146+09:00  INFO 16236 --- [    Test worker] s.d.web.controller.MemberControllerTest  : Started MemberControllerTest in 0.871 seconds (process running for 7.951)
+2024-02-18T19:04:40.204+09:00  INFO 16236 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : REQUEST [c489f200-4704-4213-95fa-a519cf834088][/members/new][sns.demo.web.controller.MemberController#createMember(JoinDTO, BindingResult, Errors)]
 dto is JoinDTO(username=jewoo, password1=1234, password2=1234, email=jewoos15@naver.com)
-2024-02-18T16:12:47.612+09:00  INFO 8152 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : postHandle [ModelAndView [view="redirect:/login"; model={}]]
-2024-02-18T16:12:47.618+09:00  INFO 8152 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : RESPONSE [89460b81-95cb-43d9-831e-b0ee3dd69699][/members/new]
+2024-02-18T19:04:40.368+09:00  INFO 16236 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : postHandle [ModelAndView [view="redirect:/login"; model={}]]
+2024-02-18T19:04:40.374+09:00  INFO 16236 --- [    Test worker] s.demo.web.interceptor.LogInterceptor    : RESPONSE [c489f200-4704-4213-95fa-a519cf834088][/members/new]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
