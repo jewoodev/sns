@@ -59,7 +59,8 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/login", "/error/**",
                                         "/bootstrap.min.css", "/style.css", "/favicon/**",
                                         "/members/new").permitAll()
-                                .requestMatchers("/login/home").hasAuthority(Role.USER.name())
+                                .requestMatchers("/board/**").hasRole(Role.USER.name())
+                                .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

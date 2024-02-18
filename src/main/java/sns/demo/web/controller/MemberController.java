@@ -1,11 +1,10 @@
 package sns.demo.web.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +23,15 @@ import sns.demo.web.service.BoardService;
 import sns.demo.web.service.CommentService;
 import sns.demo.web.service.MemberService;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Slf4j
-@Controller
-@RequiredArgsConstructor
 @RequestMapping("/members")
+@RequiredArgsConstructor
+@Controller
 public class MemberController {
 
     private final MemberService memberService;
@@ -134,7 +135,11 @@ public class MemberController {
     }
 
     @GetMapping("/menu")
-    public String menu() {
+    public String menu(Authentication authentication, Model model) {
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Stream<String> roleStream = authorities.stream().map(GrantedAuthority::getAuthority);
+        Optional<String> admin = roleStream.filter(r -> r.equals("ROLE_ADMIN")).findFirst();
+        model.addAttribute("isAdmin", admin.isPresent());
         return "members/additionalMenu";
     }
 

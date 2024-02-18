@@ -2,7 +2,6 @@ package sns.demo.domain.repository;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import sns.demo.domain.entity.Board;
 import sns.demo.domain.entity.Likes;
@@ -34,5 +33,5 @@ public class LikeRepository {
     public void changeLike(Likes likes) {
         Likes findOne = em.find(Likes.class, likes.getId());
         findOne.changeLike();
-    };
+    }
 }

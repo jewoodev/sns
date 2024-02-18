@@ -8,7 +8,6 @@ import sns.demo.domain.entity.Likes;
 import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.LikeRepository;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Transactional(readOnly = true)

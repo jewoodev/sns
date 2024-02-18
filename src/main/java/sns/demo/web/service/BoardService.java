@@ -11,7 +11,6 @@ import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.BoardRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
