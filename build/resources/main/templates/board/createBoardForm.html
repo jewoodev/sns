@@ -7,7 +7,7 @@
         <h3>게시글 작성하기</h3>
     </div>
 
-    <form th:action th:object="${boardDTO}" method="post" enctype="multipart/form-data">
+    <form th:action th:object="${boardRequestDTO}" method="post" enctype="multipart/form-data">
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
                th:text="${err}">글로벌 오류 메세지</p>
@@ -23,6 +23,7 @@
             <label th:for="content" class="form-label">내용</label>
             <textarea rows="3" style="height: 200px;" th:field="*{content}" class="form-control"
                       placeholder="내용을 입력하세요" th:class="${#fields.hasErrors('content')}? 'form-control field-error' : 'form-control'"></textarea>
+            <div class="field-error" th:errors="*{content}"/>
         </div>
 
         <br>
