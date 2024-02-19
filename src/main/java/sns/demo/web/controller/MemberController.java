@@ -105,7 +105,7 @@ public class MemberController {
         return "members/updateMemberPasswordForm";
     }
 
-    @PostMapping("/update/password")
+    @PatchMapping("/update/password")
     public String updateMemberPassword(@Validated @ModelAttribute UpdatePasswordDTO form,
                                        BindingResult result, Authentication authentication) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

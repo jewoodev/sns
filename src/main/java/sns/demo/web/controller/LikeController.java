@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import sns.demo.domain.dto.CustomUserDetails;
@@ -22,7 +23,7 @@ public class LikeController {
     private final LikeService likeService;
     private final BoardService boardService;
 
-    @PostMapping("/board/{id}/likes")
+    @PatchMapping("/board/{id}/likes")
     public String increase(@PathVariable(name = "id") Long id,
                            Authentication authentication, Model model) {
         Board board = boardService.findById(id);

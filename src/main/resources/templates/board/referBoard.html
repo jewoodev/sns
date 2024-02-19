@@ -12,7 +12,7 @@
         <p class="field-error" th:text="${exception}">전체 오류 메시지</p>
     </div>
 
-    <form th:action="@{/board/{id}/likes (id=${board.getId()})}" th:method="post">
+    <form th:action="@{/board/{id}/likes (id=${board.getId()})}" th:method="patch">
         <button type="submit">
             <img th:src="${doLike} ? '/heart-fill.svg' : '/heart.svg'" alt="Favorite button" />
         </button>

@@ -139,7 +139,7 @@ public class BoardController {
         return "board/updateBoard";
     }
 
-    @PostMapping("/{id}/update")
+    @PatchMapping("/{id}/update")
     public String updateBoard(@PathVariable(name = "id") Long id,
                               @Validated @ModelAttribute BoardRequestDTO form, BindingResult result) throws IOException {
         if (result.hasErrors()) {
