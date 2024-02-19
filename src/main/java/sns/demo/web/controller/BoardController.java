@@ -39,7 +39,7 @@ public class BoardController {
 
     @GetMapping("/new")
     public String createBoard(Model model) {
-        model.addAttribute("boardDTO", new BoardRequestDTO());
+        model.addAttribute("boardRequestDTO", new BoardRequestDTO());
         return "board/createBoardForm";
     }
 
