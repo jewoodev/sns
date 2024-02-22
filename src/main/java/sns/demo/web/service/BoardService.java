@@ -11,6 +11,7 @@ import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.BoardRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -24,7 +25,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board findById(Long boardId) {
-        return boardRepository.findById(boardId).orElse(null);
+        return boardRepository.findById(boardId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 게시글입니다."));
     }
 
     @Transactional(readOnly = true)
@@ -48,10 +49,14 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public BoardResponseDTO boardDetail(Long id) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
-        return BoardResponseDTO.builder()
-                .board(board)
-                .build();
+        try {
+            Board board = findById(id);
+            return BoardResponseDTO.builder()
+                    .board(board)
+                    .build();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("존재하지 않는 게시글입니다.");
+        }
     }
 
     public void increaseViews(Board board) {

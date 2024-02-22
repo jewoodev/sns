@@ -7,6 +7,7 @@ import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.MemberRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -28,10 +29,13 @@ public class MemberService {
     /**
      * 단일 회원 조회
      */
-    public Optional<Member> findById(Long id) {return memberRepository.findById(id);}
+    public Member findById(Long id) {
+        return memberRepository.findById(id)
+            .orElseThrow(() -> new NoSuchElementException("존재하지 않는 계정입니다."));
+    }
 
     public Member findByUsername(String username) {
-        return memberRepository.findByUsername(username).orElse(null);
+        return memberRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException("존재하지 않는 계정입니다."));
     }
 
     /**

@@ -30,10 +30,10 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<File> boardImages;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     @ColumnDefault("0")
@@ -42,7 +42,7 @@ public class Board extends BaseTimeEntity {
     @ColumnDefault("0")
     private Long likeCount;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Likes> likes;
 
     public void update(BoardRequestDTO board, List<File> boardImages) {

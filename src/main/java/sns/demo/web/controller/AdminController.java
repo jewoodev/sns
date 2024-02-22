@@ -31,7 +31,7 @@ public class AdminController {
 
     @DeleteMapping("/member/{id}/delete")
     public String deleteMember(@PathVariable(name = "id") Long id) {
-        memberService.delete(memberService.findById(id).get());
+        memberService.delete(memberService.findById(id));
         return "redirect:/admin/member/list";
     }
 

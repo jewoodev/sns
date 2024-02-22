@@ -1,0 +1,12 @@
+#cloud:
+#  aws:
+#    s3:
+#      bucket: first-but-absolute-bucket
+#    credentials:
+#      access-key: AKIA5RXEGE2QZJJQWM4F
+#      secret-key: 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
+#    region:
+#      static: ap-northeast-2
+#      auto: false
+#    stack:
+#      auto: false

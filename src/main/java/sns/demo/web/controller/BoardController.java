@@ -108,9 +108,8 @@ public class BoardController {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Member member = userDetails.getMember(); // 로그인 한 유저
 
-        Likes likes;
-        Optional<Likes> optional = likeService.findByBoardAndMember(board, member);
-        likes = optional.orElseGet(() -> likeService.init(member, board));
+
+        Likes likes = likeService.findByBoardAndMember(board, member);
         boolean doLike = likes.isDoLike();
         model.addAttribute("doLike", doLike); // 로그인 되어있는 유저가 게시물에 좋아요를 눌렀는지의 여부
 

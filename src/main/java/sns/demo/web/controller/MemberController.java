@@ -88,7 +88,6 @@ public class MemberController {
 
         Member member = Member.builder()
                 .username(form.getUsername())
-//                .password(form.getPassword1())
                 .password(encodedPwd)
                 .email(form.getEmail())
                 .role(Role.USER)

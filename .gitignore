@@ -1,9 +1,11 @@
 /troubleShooting/*
 HELP.md
 .gradle
-application.yml
+
+#resources/
+src/main/resources/application.yml
 src/main/resources/images
-s3.yml
+src/main/resources/s3.yml
 
 #build/
 !gradle/wrapper/gradle-wrapper.jar

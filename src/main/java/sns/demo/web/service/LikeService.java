@@ -8,6 +8,7 @@ import sns.demo.domain.entity.Likes;
 import sns.demo.domain.entity.Member;
 import sns.demo.domain.repository.LikeRepository;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
@@ -26,8 +27,9 @@ public class LikeService {
         return likeRepository.save(likes);
     }
 
-    public Optional<Likes> findByBoardAndMember(Board board, Member member) {
-        return likeRepository.findByBoardAndMember(board, member);
+    public Likes findByBoardAndMember(Board board, Member member) {
+        return likeRepository.findByBoardAndMember(board, member)
+                .orElseGet(() -> init(member, board));
     }
 
     @Transactional

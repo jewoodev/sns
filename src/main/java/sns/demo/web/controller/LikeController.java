@@ -31,19 +31,17 @@ public class LikeController {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Member member = userDetails.getMember(); // 로그인 된 유저
 
-        Optional<Likes> optional = likeService.findByBoardAndMember(board, member);
-        if (optional.isPresent()) {
-            Likes likes = optional.get();
+        Likes likes = likeService.findByBoardAndMember(board, member);
 
-            // 해당 게시물의 총 좋아요 수 처리, 유저가 좋아요를 눌렀을 때 하트 변화 기능
-            if (likes.isDoLike()) {
-                boardService.decreaseLikes(board);
-                likeService.changeLike(likes);
-            } else {
-                boardService.increaseLikes(board);
-                likeService.changeLike(likes);
-            }
+        // 해당 게시물의 총 좋아요 수 처리, 유저가 좋아요를 눌렀을 때 하트 변화 기능
+        if (likes.isDoLike()) {
+            boardService.decreaseLikes(board);
+            likeService.changeLike(likes);
+        } else {
+            boardService.increaseLikes(board);
+            likeService.changeLike(likes);
         }
+
 
         return "redirect:/board/{id}";
     }

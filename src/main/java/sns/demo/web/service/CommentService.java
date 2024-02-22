@@ -17,7 +17,6 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final BoardService boardService;
-    private final MemberService memberService;
 
     @Transactional
     public void write(CommentDTO dto, Long boardId, Member member) {
