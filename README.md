@@ -88,7 +88,3 @@
 [글 작성, 수정, 삭제, 기능](https://youtu.be/xn4hO0pD64I)
 
 [자신이 적은 글, 댓글, 조회, 계정 삭제 기능](https://youtu.be/frx8Wm11BDY)
-
-# 웹 페이지 링크
-
-[여기에서 접근해주세요!](http://ec2-13-125-217-29.ap-northeast-2.compute.amazonaws.com:8080/)
